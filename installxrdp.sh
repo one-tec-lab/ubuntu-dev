@@ -1,3 +1,9 @@
+sudo echo
+
+sudo apt-get update
+sudo apt-get install ubuntu-desktop gnome-shell-extension-ubuntu-dock ubuntu-session ubuntu-settings ubuntu-gnome-default-settings ubuntu-standard
+
+
 ################################################################
 # Script_Name : Std-Xrdp-install-0.2.sh
 # Description : Perform an automated standard installation of xrdp
