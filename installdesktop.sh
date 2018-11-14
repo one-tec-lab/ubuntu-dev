@@ -11,7 +11,7 @@ sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | 
 sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
 
 sudo apt-get update
-sudo apt-get install ubuntu-desktop -y
+sudo apt-get install gcc g++ make ubuntu-desktop apt-transport-https ca-certificates curl software-properties-common -y
 
 ################################################################
 # Script_Name : Std-Xrdp-install-0.2.sh
@@ -139,7 +139,7 @@ echo
 
 sudo ufw allow 3389/tcp
 
-sudo apt-get install gnome-tweak-tool  xrdp-pulseaudio-installer  -y
+sudo apt-get install xrdp-pulseaudio-installer  -y
 #sudo xrdp-build-pulse-modules
 cd /tmp
 sudo apt source pulseaudio
@@ -152,8 +152,6 @@ cd /usr/src/xrdp-pulseaudio-installer
 sudo make PULSE_DIR="/tmp/pulseaudio-11.1"
 
 sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
-
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -168,7 +166,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 sudo groupadd docker
 sudo usermod -aG docker devuser
-sudo echo "127.0.0.1     dockerhost" >> /etc/hosts
+sudo echo "127.0.0.1     dockerhost" | sudo tee -a  /etc/hosts
 
 echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
 echo 'export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' >> $HOME/.bashrc
@@ -177,19 +175,19 @@ source $HOME/.bashrc
 
 sudo echo
 sudo rm -rf /usr/local/go
-cd Downloads/
+#cd Downloads/
 wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
 mkdir -p $HOME/go/bin
 
 ###### node 10
-cd ~/Downloads
+#cd ~/Downloads
 curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
 
 sudo bash nodesource_setup.sh
 
 sudo apt-get install -y nodejs
-sudo apt-get install gcc g++ make
+
 
 
 #YARN
@@ -201,8 +199,8 @@ sudo apt-get update && sudo apt-get install yarn
 
 ########### git
 sudo add-apt-repository ppa:git-core/ppa 
-sudo apt update
-sudo apt install git -y
+sudo apt-get update
+sudo apt-get install git -y
 
 ####### dash to panel
 mkdir -p $HOME/otl
