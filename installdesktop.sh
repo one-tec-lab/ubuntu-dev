@@ -182,6 +182,24 @@ wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
 mkdir -p $HOME/go/bin
 
+###### node
+cd ~/Downloads
+curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+
+sudo bash nodesource_setup.sh
+
+sudo apt-get install -y nodejs
+sudo apt-get install gcc g++ make
+
+
+#YARN
+
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+
+
 
 
 
