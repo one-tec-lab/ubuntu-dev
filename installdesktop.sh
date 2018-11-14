@@ -3,12 +3,12 @@ sudo echo
 
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 
-sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /etc/apt/sources.list
-sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic main universe #Added by software-properties" >> /etc/apt/sources.list
-sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-security main universe" >> /etc/apt/sources.list
-sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-security main universe #Added by software-properties" >> /etc/apt/sources.list
-sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /etc/apt/sources.list
-sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" >> /etc/apt/sources.list
+sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee /etc/apt/sources.list
+sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
+sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-security main universe" | sudo tee -a /etc/apt/sources.list
+sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-security main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
+sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | sudo tee -a /etc/apt/sources.list
+sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
 
 sudo apt-get update
 sudo apt-get install ubuntu-desktop -y
