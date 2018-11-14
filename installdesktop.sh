@@ -153,19 +153,12 @@ sudo make PULSE_DIR="/tmp/pulseaudio-11.1"
 
 sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
 
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common -y
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 sudo apt-get update
 sudo apt-get install docker-ce -y
@@ -174,7 +167,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker devuser
 sudo echo "127.0.0.1     dockerhost" >> /etc/hosts
 
 echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
