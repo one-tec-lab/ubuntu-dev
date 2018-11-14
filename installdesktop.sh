@@ -17,6 +17,9 @@ sudo echo
 sudo adduser devuser
 sudo usermod -aG sudo devuser
 
+sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
+sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
+
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
 
 sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee /etc/apt/sources.list
