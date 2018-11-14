@@ -140,7 +140,7 @@ echo
 sudo ufw allow 3389/tcp
 
 sudo apt-get install gnome-tweak-tool  xrdp-pulseaudio-installer  -y
-sudo xrdp-build-pulse-modules
+#sudo xrdp-build-pulse-modules
 cd /tmp
 sudo apt source pulseaudio
 
