@@ -16,6 +16,7 @@ sudo echo
 
 sudo adduser devuser
 sudo usermod -aG sudo devuser
+su - devuser
 
 sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
 sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
