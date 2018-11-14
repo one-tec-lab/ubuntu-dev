@@ -216,4 +216,4 @@ make install
 cd $HOME/
 
 ####### open connect
-sudo apt-get install network-manager-vpnc-gnome -y
+sudo apt-get install openconnect -y
