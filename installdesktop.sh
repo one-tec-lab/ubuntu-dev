@@ -204,5 +204,10 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 sudo apt install git -y
 
-
+####### dash to panel
+mkdir -p $HOME/otl
+cd $HOME/otl
+git clone https://github.com/home-sweet-gnome/dash-to-panel.git
+cd $HOME/otl/dash-to-panel
+make install
 
