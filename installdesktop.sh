@@ -30,8 +30,51 @@ sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | 
 sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
 
 sudo apt-get update
-sudo apt-get install gcc g++ make ubuntu-desktop apt-transport-https ca-certificates curl software-properties-common -y
+sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect -y
 
+
+######## docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt-get update
+sudo apt-get install docker-ce -y
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo groupadd docker
+sudo usermod -aG docker devuser
+sudo echo "127.0.0.1     dockerhost" | sudo tee -a  /etc/hosts
+
+
+####### go
+echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
+echo 'export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' >> $HOME/.bashrc
+source $HOME/.bashrc
+sudo echo
+sudo rm -rf /usr/local/go
+cd $HOME/
+curl -sL https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -o $HOME/go.tar.gz
+sudo tar -C /usr/local -xzf go.tar.gz
+mkdir -p $HOME/go/bin
+
+###### node 10
+cd $HOME/
+curl -sL https://deb.nodesource.com/setup_10.x -o $HOME/nodesource_setup.sh
+sudo bash $HOME/nodesource_setup.sh
+sudo apt-get install -y nodejs
+
+#YARN
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+
+
+
+sudo apt-get install ubuntu-desktop -y
 
 echo
 /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
@@ -158,49 +201,6 @@ sudo make PULSE_DIR="/tmp/pulseaudio-11.1"
 
 sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-sudo apt-get update
-sudo apt-get install docker-ce -y
-
-sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-
-sudo groupadd docker
-sudo usermod -aG docker devuser
-sudo echo "127.0.0.1     dockerhost" | sudo tee -a  /etc/hosts
-
-echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
-echo 'export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' >> $HOME/.bashrc
-
-source $HOME/.bashrc
-
-sudo echo
-sudo rm -rf /usr/local/go
-cd $HOME/
-curl -sL https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -o $HOME/go.tar.gz
-sudo tar -C /usr/local -xzf go.tar.gz
-mkdir -p $HOME/go/bin
-
-###### node 10
-cd $HOME/
-curl -sL https://deb.nodesource.com/setup_10.x -o $HOME/nodesource_setup.sh
-
-sudo bash $HOME/nodesource_setup.sh
-
-sudo apt-get install -y nodejs
-
-
-
-#YARN
-
-curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update && sudo apt-get install yarn
 
 ########### git
 sudo add-apt-repository ppa:git-core/ppa 
@@ -215,5 +215,4 @@ cd $HOME/otl/dash-to-panel
 make install
 cd $HOME/
 
-####### open connect
-sudo apt-get install openconnect -y
+
