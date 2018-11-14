@@ -1,9 +1,17 @@
 sudo echo
 
+
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+
+sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" > /etc/apt/sources.list
+sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic main universe #Added by software-properties" >> /etc/apt/sources.list
+sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-security main universe" >> /etc/apt/sources.list
+sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-security main universe #Added by software-properties" >> /etc/apt/sources.list
+sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /etc/apt/sources.list
+sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" >> /etc/apt/sources.list
+
 sudo apt-get update
 sudo apt-get install ubuntu-desktop -y
-sudo apt-get gnome-shell-extension-ubuntu-dock ubuntu-session ubuntu-settings ubuntu-gnome-default-settings ubuntu-standard -y
-
 
 ################################################################
 # Script_Name : Std-Xrdp-install-0.2.sh
@@ -128,3 +136,22 @@ echo
 /bin/echo -e "\e[1;36m# Written by Griffon - April 2018 - Ver 0.2 - Std-Xrdp-Install-0.2.sh\e[0m"
 /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
 echo
+
+sudo apt-get install gnome-tweak-tool  xrdp-pulseaudio-installer  -y
+sudo xrdp-build-pulse-modules
+cd /tmp
+sudo apt source pulseaudio
+
+cd /tmp/pulseaudio-11.1
+sudo ./configure
+
+
+cd /usr/src/xrdp-pulseaudio-installer
+sudo make PULSE_DIR="/tmp/pulseaudio-11.1"
+
+sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
+
+
+
+sudo ufw allow 3389/tcp
+
