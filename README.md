@@ -2,5 +2,5 @@
 
 Copy the following command in a new console and press enter: 
 
-    curl https://raw.githubusercontent.com/dlintec/k-meteor-dev/master/utils/kstart > $HOME/kstart;chmod +x kstart;.$HOME/kstart
+    curl https://raw.githubusercontent.com/one-tec-lab/master/installdesktop.sh > $HOME/installdesktop.sh;chmod +x installdesktop.sh;.$HOME/installdesktop.sh
     
