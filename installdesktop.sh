@@ -214,3 +214,6 @@ git clone https://github.com/home-sweet-gnome/dash-to-panel.git
 cd $HOME/otl/dash-to-panel
 make install
 cd $HOME/
+
+####### open connect
+sudo apt-get install network-manager-vpnc-gnome -y
