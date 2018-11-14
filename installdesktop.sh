@@ -14,6 +14,8 @@ sudo echo
 # Disclaimer : Script provided AS IS. Use it at your own risk....
 ##################################################################
 
+sudo adduser devuser
+sudo usermod -aG sudo devuser
 
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
 
