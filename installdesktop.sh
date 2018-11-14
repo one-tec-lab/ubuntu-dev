@@ -176,8 +176,8 @@ source $HOME/.bashrc
 sudo echo
 sudo rm -rf /usr/local/go
 #cd Downloads/
-wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
+curl -sL https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -o go.tar.gz
+sudo tar -C /usr/local -xzf go.tar.gz
 mkdir -p $HOME/go/bin
 
 ###### node 10
