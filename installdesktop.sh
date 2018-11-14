@@ -137,6 +137,8 @@ echo
 /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
 echo
 
+sudo ufw allow 3389/tcp
+
 sudo apt-get install gnome-tweak-tool  xrdp-pulseaudio-installer  -y
 sudo xrdp-build-pulse-modules
 cd /tmp
@@ -150,10 +152,6 @@ cd /usr/src/xrdp-pulseaudio-installer
 sudo make PULSE_DIR="/tmp/pulseaudio-11.1"
 
 sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
-
-
-
-sudo ufw allow 3389/tcp
 
 sudo apt-get install \
     apt-transport-https \
