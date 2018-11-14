@@ -1,7 +1,21 @@
 sudo echo
+################################################################
+# Script_Name : Std-Xrdp-install-0.2.sh
+# Description : Perform an automated standard installation of xrdp
+# on ubuntu 17.10 and later
+# Date : Nov 2018
+# written by : tadeo
+# 
+# Version : 0.2
+# History : 0.2 - Added Logic for Ubuntu 17.10 and 18.04 detection
+# - Updated the polkit section
+# - New formatting and structure
+# 0.1 - Initial Script
+# Disclaimer : Script provided AS IS. Use it at your own risk....
+##################################################################
 
 
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
 
 sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee /etc/apt/sources.list
 sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
@@ -13,25 +27,11 @@ sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe
 sudo apt-get update
 sudo apt-get install gcc g++ make ubuntu-desktop apt-transport-https ca-certificates curl software-properties-common -y
 
-################################################################
-# Script_Name : Std-Xrdp-install-0.2.sh
-# Description : Perform an automated standard installation of xrdp
-# on ubuntu 17.10 and later
-# Date : April 2018
-# written by : Griffon
-# Web Site :http://www.c-nergy.be - http://www.c-nergy.be/blog
-# Version : 0.2
-# History : 0.2 - Added Logic for Ubuntu 17.10 and 18.04 detection
-# - Updated the polkit section
-# - New formatting and structure
-# 0.1 - Initial Script
-# Disclaimer : Script provided AS IS. Use it at your own risk....
-##################################################################
 
 echo
 /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
 /bin/echo -e "\e[1;36m# Standard XRDP Installation Script - Ver 0.2 #\e[0m"
-/bin/echo -e "\e[1;36m# Written by Griffon - April 2018- www.c-nergy.be #\e[0m"
+/bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018-  #\e[0m"
 /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
 echo
 
@@ -175,16 +175,16 @@ source $HOME/.bashrc
 
 sudo echo
 sudo rm -rf /usr/local/go
-#cd Downloads/
-curl -sL https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -o go.tar.gz
+cd $HOME/
+curl -sL https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -o $HOME/go.tar.gz
 sudo tar -C /usr/local -xzf go.tar.gz
 mkdir -p $HOME/go/bin
 
 ###### node 10
-#cd ~/Downloads
-curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+cd $HOME/
+curl -sL https://deb.nodesource.com/setup_10.x -o $HOME/nodesource_setup.sh
 
-sudo bash nodesource_setup.sh
+sudo bash $HOME/nodesource_setup.sh
 
 sudo apt-get install -y nodejs
 
@@ -208,4 +208,4 @@ cd $HOME/otl
 git clone https://github.com/home-sweet-gnome/dash-to-panel.git
 cd $HOME/otl/dash-to-panel
 make install
-
+cd $HOME/
