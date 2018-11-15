@@ -1,6 +1,6 @@
 
 sudo apt-get update
-sudo apt-updgrade -y
+sudo apt-get updgrade -y
 sudo apt-get install ubuntu-desktop -y
 
 echo
@@ -144,6 +144,8 @@ sudo add-apt-repository ppa:communitheme/ppa -y
 sudo apt-get update
 sudo apt-get install ubuntu-communitheme-session -y
 
+sudo apt-get updgrade -y
+sudo systemctl start graphical.target
 
 gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com
 gsettings set org.gnome.desktop.interface icon-theme 'Pop'
