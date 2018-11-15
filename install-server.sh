@@ -17,6 +17,9 @@ sudo echo
 sudo adduser devuser
 sudo usermod -aG sudo devuser
 su - devuser
+cd $HOME/
+curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-desktop.sh > $HOME/install-desktop.sh;chmod +x install-desktop.sh
+
 
 sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
 sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
@@ -72,7 +75,6 @@ sudo apt-get install -y nodejs
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
-
 
 
 
