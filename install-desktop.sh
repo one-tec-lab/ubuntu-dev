@@ -155,17 +155,4 @@ chmod +x ~/RunMe
 
 echo "source ~/RunMe" >> ~/.bashrc
 
-bash -c "cat >~/.local/share/applications/start.desktop" <<EOF
-[Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Type=Application
-Terminal=false
-Exec=$HOME/RunMe
-Name=Start Here
-Icon=/usr/share/icons/Pop/64x64/categories/enjoy-music-player.svg
-EOF
-
-chmod +x ~/.local/share/applications/start.desktop
-sudo chown devuser:devuser /home/devuser/.local/share/gvfs-metadata/home*
-
+#
