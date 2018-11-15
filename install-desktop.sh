@@ -125,3 +125,5 @@ git clone https://github.com/home-sweet-gnome/dash-to-panel.git
 cd $HOME/otl/dash-to-panel
 make install
 cd $HOME/
+gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com
+
