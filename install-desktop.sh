@@ -147,7 +147,25 @@ sudo apt-get install ubuntu-communitheme-session -y
 sudo apt-get updgrade -y
 sudo systemctl start graphical.target
 
-gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com
-gsettings set org.gnome.desktop.interface icon-theme 'Pop'
-gsettings set org.gnome.desktop.interface gtk-theme "Communitheme"
+mkdir -p $HOME/Desktop
+echo "gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com" > ~/RunMe
+echo "gsettings set org.gnome.desktop.interface icon-theme 'Pop'" >> ~/RunMe
+echo "gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme'" >> ~/RunMe
+chmod +x ~/RunMe
+
+echo "source ~/RunMe" >> ~/.bashrc
+
+bash -c "cat >~/.local/share/applications/start.desktop" <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$HOME/RunMe
+Name=Start Here
+Icon=/usr/share/icons/Pop/64x64/categories/enjoy-music-player.svg
+EOF
+
+chmod +x ~/.local/share/applications/start.desktop
+sudo chown devuser:devuser /home/devuser/.local/share/gvfs-metadata/home*
 
