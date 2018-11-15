@@ -18,7 +18,7 @@ sudo adduser devuser
 sudo usermod -aG sudo devuser
 
 cd $HOME/
-curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-desktop.sh > $HOME/install-desktop.sh;chmod +x install-desktop.sh
+#curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-desktop.sh > $HOME/install-desktop.sh;chmod +x install-desktop.sh
 
 
 sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
