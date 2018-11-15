@@ -26,7 +26,7 @@ Run the following commands in a console:
 
 Copy the following command in a new console and press enter: 
     
-    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-server.sh > $HOME/install-server.sh;chmod +x install-server.sh;sudo bash install-server.sh 2>&1 | tee install-server.log
+    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-desktop.sh > $HOME/install-desktop.sh;chmod +x install-desktop.sh;sudo bash install-desktop.sh 2>&1 | tee install-desktop.log
     
 ### 3 Install desktop environment
 
