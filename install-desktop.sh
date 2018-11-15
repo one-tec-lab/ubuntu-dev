@@ -139,3 +139,7 @@ sudo apt update
 sudo apt install ubuntu-communitheme-session
 gsettings set org.gnome.desktop.interface gtk-theme "Communitheme"
 
+####chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
