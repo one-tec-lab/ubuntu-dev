@@ -114,7 +114,7 @@ sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
 
 
 ########### git
-sudo add-apt-repository ppa:git-core/ppa 
+sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt-get update
 sudo apt-get install git -y
 
@@ -127,3 +127,12 @@ make install
 cd $HOME/
 gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com
 
+######## pop icons
+sudo add-apt-repository ppa:system76/pop -y
+sudo apt update
+sudo apt install pop-icon-theme -y
+
+#####community team
+sudo add-apt-repository ppa:communitheme/ppa
+sudo apt update
+sudo apt install ubuntu-communitheme-session
