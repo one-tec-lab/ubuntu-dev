@@ -129,14 +129,14 @@ gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com
 
 ######## pop icons
 sudo add-apt-repository ppa:system76/pop -y
-sudo apt update
-sudo apt install pop-icon-theme -y
+sudo apt-get update
+sudo apt-get install pop-icon-theme -y
 gsettings set org.gnome.desktop.interface icon-theme 'Pop'
 
 #####community team
-sudo add-apt-repository ppa:communitheme/ppa
-sudo apt update
-sudo apt install ubuntu-communitheme-session
+sudo add-apt-repository ppa:communitheme/ppa -y
+sudo apt-get update
+sudo apt-get install ubuntu-communitheme-session -y
 gsettings set org.gnome.desktop.interface gtk-theme "Communitheme"
 
 ####chrome
