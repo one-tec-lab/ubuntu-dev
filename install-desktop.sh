@@ -20,21 +20,7 @@ echo
 
 version=$(lsb_release -d | awk -F":" '/Description/ {print $2}')
 
-if [[ "$version" = *"Ubuntu 17.10"* ]] || [[ "$version" = *"Ubuntu 18.04"* ]];
-then
-echo
-/bin/echo -e "\e[1;32m.... Ubuntu Version :$version\e[0m"
-/bin/echo -e "\e[1;32m.... Supported version detected....proceeding\e[0m"
-
-else
-/bin/echo -e "\e[1;31m!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\e[0m"
-/bin/echo -e "\e[1;31mYour system is not running Ubuntu 17.10 Edition.\e[0m"
-/bin/echo -e "\e[1;31mThe script has been tested only on Ubuntu 17.10...\e[0m"
-/bin/echo -e "\e[1;31mThe script is exiting...\e[0m"
-/bin/echo -e "\e[1;31m!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\e[0m"
-echo
-exit
-fi
+echo $version
 
 #---------------------------------------------------#
 # Step 1 - Install xRDP Software....
