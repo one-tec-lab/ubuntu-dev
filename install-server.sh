@@ -34,6 +34,7 @@ sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | 
 sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
 
 sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect -y
 
 
