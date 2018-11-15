@@ -16,7 +16,7 @@ sudo echo
 
 sudo adduser devuser
 sudo usermod -aG sudo devuser
-su - devuser
+
 cd $HOME/
 curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-desktop.sh > $HOME/install-desktop.sh;chmod +x install-desktop.sh
 
