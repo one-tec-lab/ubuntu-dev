@@ -1,6 +1,6 @@
-
+sudo echo
 sudo apt-get update
-sudo apt-get -y updgrade
+sudo apt-get -y upgrade
 sudo apt-get install ubuntu-desktop -y
 
 echo
@@ -120,12 +120,14 @@ sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt-get update
 sudo apt-get install git -y
 
+mkdir -p $HOME/otl
 ####chrome
+cd $HOME
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 ####### dash to panel
-mkdir -p $HOME/otl
+
 cd $HOME/otl
 git clone https://github.com/home-sweet-gnome/dash-to-panel.git
 cd $HOME/otl/dash-to-panel
@@ -144,7 +146,7 @@ sudo add-apt-repository ppa:communitheme/ppa -y
 sudo apt-get update
 sudo apt-get install ubuntu-communitheme-session -y
 
-sudo apt-get -y updgrade
+sudo apt-get -y upgrade
 sudo systemctl start graphical.target
 
 mkdir -p $HOME/Desktop
