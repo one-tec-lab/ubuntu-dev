@@ -1,6 +1,6 @@
 
 sudo apt-get update
-sudo apt-get updgrade -y
+sudo apt-get -y updgrade
 sudo apt-get install ubuntu-desktop -y
 
 echo
@@ -144,7 +144,7 @@ sudo add-apt-repository ppa:communitheme/ppa -y
 sudo apt-get update
 sudo apt-get install ubuntu-communitheme-session -y
 
-sudo apt-get updgrade -y
+sudo apt-get -y updgrade
 sudo systemctl start graphical.target
 
 mkdir -p $HOME/Desktop
