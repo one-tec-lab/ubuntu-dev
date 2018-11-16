@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo echo
 ################################################################
 # Script_Name : Std-Xrdp-install-0.2.sh
@@ -13,6 +15,43 @@ sudo echo
 # 0.1 - Initial Script
 # Disclaimer : Script provided AS IS. Use it at your own risk....
 ##################################################################
+
+
+function addreplacevalue {
+   usesudo="$4"
+   archivo="$3"
+   nuevacad="$2"
+   buscar="$1"
+   temporal="$archivo.tmp.kalan"
+   listalineas=""
+   linefound=0       
+   listalineas=$(cat $archivo)
+   if [[ !  -z  $listalineas  ]];then
+     #echo "buscando lineas existentes con:"
+     #echo "$nuevacad"
+     #$usesudo >$temporal
+     while read -r linea; do
+     if [[ $linea == *"$buscar"* ]];then
+       #echo "... $linea ..."
+       if [ ! "$nuevacad" == "_DELETE_" ];then
+          ## just add new line if value is NOT _DELETE_
+          echo $nuevacad >> $temporal
+       fi
+       linefound=1
+     else
+       echo $linea >> $temporal
+
+     fi
+     done <<< "$listalineas"
+
+     cat $temporal > $archivo
+     rm -rf $temporal
+   fi
+   if [ $linefound == 0 ];then
+     echo "Adding new value to file: $nuevacad"
+     echo $nuevacad>>$archivo
+   fi
+}
 
 sudo adduser devuser
 sudo usermod -aG sudo devuser
@@ -35,7 +74,7 @@ sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe
 
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect -y
+sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect ubuntu-desktop mysql-workbench gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
 
 
 ######## docker
@@ -78,9 +117,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install yarn
 
 
-sudo echo
-sudo apt-get update
-sudo apt-get install ubuntu-desktop mysql-workbench gnome-tweak-tool xrdp -y
+
 
 echo
 /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
@@ -179,7 +216,7 @@ echo
 
 sudo ufw allow 3389/tcp
 
-sudo apt-get install xrdp-pulseaudio-installer  -y
+
 #sudo xrdp-build-pulse-modules
 cd /tmp
 sudo apt source pulseaudio
