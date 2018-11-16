@@ -172,3 +172,7 @@ chmod +x ~/RunMe
 
 echo "source ~/RunMe" >> ~/.bashrc
 
+if [ -f ~/saved_settings.dconf ]; then
+   dconf load / < ~/saved_settings.dconf
+   rm -rf ~/saved_settings.dconf
+fi
