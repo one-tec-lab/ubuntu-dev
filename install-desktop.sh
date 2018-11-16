@@ -1,6 +1,6 @@
 sudo echo
 sudo apt-get update
-sudo apt-get install ubuntu-desktop -y
+sudo apt-get install ubuntu-desktop mysql-workbench gnome-tweak-tool xrdp -y
 
 echo
 /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
@@ -153,6 +153,14 @@ sudo add-apt-repository ppa:communitheme/ppa -y
 sudo apt-get update
 sudo apt-get install ubuntu-communitheme-session -y
 
+##### graphic editors
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
+sudo add-apt-repository ppa:inkscape.dev/stable -y
+sudo add-apt-repository ppa:kritalime/ppa -y
+sudo apt-get update
+sudo apt-get install gimp inkscape krita -y
+
+
 sudo apt-get -y upgrade
 sudo systemctl start graphical.target
 
@@ -164,4 +172,3 @@ chmod +x ~/RunMe
 
 echo "source ~/RunMe" >> ~/.bashrc
 
-#
