@@ -167,10 +167,10 @@ sudo systemctl start graphical.target
 
 wget https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/saved_settings.dconf
 
-echo "gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null " > ~/RunMe
-echo "gsettings set org.gnome.desktop.interface icon-theme 'Pop' 2>/dev/null " >> ~/RunMe
-echo "gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme' 2>/dev/null " >> ~/RunMe
 echo "if [ -f ~/saved_settings.dconf ]; then" >> ~/RunMe
+echo "   gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com " > ~/RunMe
+echo "   gsettings set org.gnome.desktop.interface icon-theme 'Pop' " >> ~/RunMe
+echo "   gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme' " >> ~/RunMe
 echo "   dconf load / < ~/saved_settings.dconf" >> ~/RunMe
 echo "   rm -rf ~/saved_settings.dconf" >> ~/RunMe
 echo "fi" >> ~/RunMe
