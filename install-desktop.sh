@@ -180,3 +180,8 @@ chmod +x ~/RunMe
 
 echo "source ~/RunMe" >> ~/.bashrc
 
+rm ~/nodesource_setup.sh
+rm ~/install-server.sh
+rm ~/install-desktop.sh
+rm ~/google-chrome-stable_current_amd64.deb 
+rm ~/go.tar.gz
