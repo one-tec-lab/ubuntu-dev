@@ -158,7 +158,7 @@ sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
 sudo add-apt-repository ppa:inkscape.dev/stable -y
 sudo add-apt-repository ppa:kritalime/ppa -y
 sudo apt-get update
-sudo apt-get install gimp inkscape krita -y
+sudo apt-get install gimp inkscape krita vlc -y
 
 
 sudo apt-get -y upgrade
