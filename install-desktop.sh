@@ -164,7 +164,9 @@ sudo apt-get install gimp inkscape krita -y
 sudo apt-get -y upgrade
 sudo systemctl start graphical.target
 
-mkdir -p $HOME/Desktop
+
+wget https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/saved_settings.dconf
+
 echo "gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null " > ~/RunMe
 echo "gsettings set org.gnome.desktop.interface icon-theme 'Pop' 2>/dev/null " >> ~/RunMe
 echo "gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme' 2>/dev/null " >> ~/RunMe
