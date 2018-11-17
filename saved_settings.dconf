@@ -1,3 +1,6 @@
+[org/gnome/settings-daemon/plugins/color]
+night-light-last-coordinates=(19.473400000000002, -99.242699999999999)
+
 [org/gnome/settings-daemon/plugins/xsettings]
 antialiasing='grayscale'
 hinting='slight'
@@ -29,14 +32,14 @@ root='file:///'
 active-plugins=['time', 'filebrowser', 'docinfo', 'modelines', 'spell']
 
 [org/gnome/gedit/state/window]
-size=(900, 700)
-state=87168
+size=(1346, 700)
+state=43908
 bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page='GeditWindowDocumentsPanel'
 
 [org/gnome/nautilus/preferences]
-default-folder-viewer='list-view'
+default-folder-viewer='icon-view'
 search-filter-time-type='last_modified'
 
 [org/gnome/nautilus/window-state]
@@ -45,7 +48,7 @@ geometry='890x550+301+112'
 maximized=false
 
 [org/gnome/system/location]
-enabled=false
+enabled=true
 
 [org/gnome/evolution-data-server]
 network-monitor-gio-name=''
@@ -130,6 +133,14 @@ report-technical-problems=true
 [org/gnome/control-center]
 last-panel='universal-access'
 
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-color='rgb(27,27,26)'
+default-size-columns=120
+use-theme-colors=false
+use-theme-transparency=false
+use-system-font=false
+font='Monospace 10'
+
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
 
@@ -138,6 +149,10 @@ first-run=false
 
 [org/gtk/settings/file-chooser]
 show-hidden=true
+
+[org/gtk/settings/color-chooser]
+selected-color=(true, 0.10666666666666667, 0.1056, 0.10240000000000002, 1.0)
+custom-colors=[(0.10666666666666667, 0.1056, 0.10240000000000002, 1.0), (0.14000000000000001, 0.13661666666666669, 0.1264666666666667, 1.0), (0.1264666666666667, 0.13661666666666666, 0.14000000000000001, 1.0), (0.071733333333333343, 0.077933333333333327, 0.080000000000000002, 1.0)]
 
 [apps/update-manager]
 first-run=false
