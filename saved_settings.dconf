@@ -11,14 +11,18 @@ numlock-state='on'
 [org/gnome/shell]
 app-picker-view=uint32 1
 enabled-extensions=['dash-to-panel@jderose9.github.com']
-favorite-apps=['gnome-control-center.desktop', 'firefox.desktop', 'google-chrome.desktop', 'thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.gnome.Software.desktop', 'mysql-workbench.desktop', 'vlc.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop']
+favorite-apps=['gnome-control-center.desktop', 'firefox.desktop', 'google-chrome.desktop', 'thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop', 'code.desktop', 'mysql-workbench.desktop', 'vlc.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop', 'org.gnome.tweaks.desktop']
 
 [org/gnome/shell/extensions/dash-to-panel]
-appicon-margin=0
-multi-monitors=false
-appicon-padding=0
+trans-use-custom-opacity=true
 panel-size=48
+multi-monitors=false
+trans-use-dynamic-opacity=false
 hotkeys-overlay-combo='TEMPORARILY'
+trans-use-custom-bg=false
+appicon-margin=0
+trans-panel-opacity=0.0
+appicon-padding=0
 
 [org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
@@ -43,8 +47,8 @@ default-folder-viewer='icon-view'
 search-filter-time-type='last_modified'
 
 [org/gnome/nautilus/window-state]
-sidebar-width=214
-geometry='890x550+301+112'
+sidebar-width=246
+geometry='890x577+220+169'
 maximized=false
 
 [org/gnome/system/location]
@@ -83,8 +87,21 @@ type='google'
 [org/gnome/deja-dup/file]
 migrated=true
 
-[org/gnome/desktop/a11y/applications]
-screen-keyboard-enabled=false
+[org/gnome/desktop/interface]
+gtk-im-module='gtk-im-context-simple'
+enable-animations=false
+icon-theme='Pop'
+gtk-theme='Adwaita-dark'
+toolkit-accessibility=false
+
+[org/gnome/desktop/notifications]
+application-children=['update-manager', 'apport-gtk']
+
+[org/gnome/desktop/notifications/application/update-manager]
+application-id='update-manager.desktop'
+
+[org/gnome/desktop/notifications/application/apport-gtk]
+application-id='apport-gtk.desktop'
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'Sundry', 'YaST']
@@ -106,32 +123,40 @@ translate=true
 categories=['X-SuSE-YaST']
 name='suse-yast.directory'
 
-[org/gnome/desktop/notifications]
-application-children=['update-manager']
+[org/gnome/desktop/screensaver]
+picture-uri='file:///home/devuser/Pictures/Black-Hardwood-Flooring-www.wallpapersbrowse.com.jpg'
+color-shading-type='solid'
+primary-color='#000000000000'
+picture-options='zoom'
+secondary-color='#000000000000'
 
-[org/gnome/desktop/notifications/application/update-manager]
-application-id='update-manager.desktop'
+[org/gnome/desktop/privacy]
+report-technical-problems=true
 
-[org/gnome/desktop/interface]
-gtk-im-module='gtk-im-context-simple'
-enable-animations=false
-icon-theme='Pop'
-gtk-theme='Communitheme'
-toolkit-accessibility=false
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+
+[org/gnome/desktop/a11y/applications]
+screen-keyboard-enabled=false
+
+[org/gnome/desktop/background]
+picture-uri='file:///home/devuser/Pictures/Black-Hardwood-Flooring-www.wallpapersbrowse.com.jpg'
+color-shading-type='solid'
+primary-color='#000000000000'
+picture-options='zoom'
+secondary-color='#000000000000'
 
 [org/gnome/desktop/input-sources]
 current=uint32 0
 sources=[('xkb', 'es')]
 xkb-options=@as []
 
-[org/gnome/desktop/wm/preferences]
-button-layout='appmenu:minimize,maximize,close'
-
-[org/gnome/desktop/privacy]
-report-technical-problems=true
-
 [org/gnome/control-center]
-last-panel='universal-access'
+last-panel='privacy'
+
+[org/gnome/eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(27,27,26)'
@@ -146,9 +171,19 @@ schema-version=uint32 3
 
 [org/gnome/software]
 first-run=false
+check-timestamp=int64 1542435744
 
 [org/gtk/settings/file-chooser]
-show-hidden=true
+sort-column='name'
+sidebar-width=214
+window-position=(0, 0)
+show-size-column=true
+show-hidden=false
+window-size=(1203, 805)
+sort-directories-first=false
+date-format='regular'
+sort-order='ascending'
+location-mode='path-bar'
 
 [org/gtk/settings/color-chooser]
 selected-color=(true, 0.10666666666666667, 0.1056, 0.10240000000000002, 1.0)

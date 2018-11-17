@@ -324,7 +324,7 @@ function install-otl {
 function save-desktop-settings {
    #if [ ! -f ~/desktop_settings.dconf ]; then
       echo "saving desktop settings"
-      dconf dump / > ~/otl/saved_settings.dconf
+      dconf dump / > ~/otl/ubuntu-dev/saved_settings.dconf
    #fi
 }
 
