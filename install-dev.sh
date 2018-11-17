@@ -332,7 +332,9 @@ function save-desktop-settings {
       dconf dump / > ~/otl/ubuntu-dev/saved_settings.dconf
    #fi
 }
-
+function default-desktop-settings {
+   curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/saved_settings.dconf > ~/saved_settings.dconf
+}
 if [ -f ~/saved_settings.dconf ]; then
    gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null
    gsettings set org.gnome.desktop.interface icon-theme 'Pop'
