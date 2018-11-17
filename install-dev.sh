@@ -2,7 +2,7 @@
 
 sudo echo
 ################################################################
-# Script_Name : Std-Xrdp-install-0.2.sh
+# Script_Name : install-dev.sh
 # Description : Perform an automated standard installation
 # of an ubuntu dev environment 
 # on ubuntu 18.04.1 and later
@@ -10,7 +10,7 @@ sudo echo
 # written by : tadeo
 # 
 # Version : 0.2
-# History : 0.2 - Added Logic for Ubuntu 17.10 and 18.04 detection
+# History : 0.2 - sourced by .bashrc
 # - Updated the polkit section
 # - New formatting and structure
 # 0.1 - Initial Script
@@ -23,9 +23,7 @@ function install-server {
    sudo usermod -aG sudo devuser
 
    cd $HOME/
-   #curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-desktop.sh > $HOME/install-desktop.sh;chmod +x install-desktop.sh
-
-
+ 
    sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
    sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
 
