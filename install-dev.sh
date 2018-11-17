@@ -235,7 +235,7 @@ EOF
    ########### git
    sudo add-apt-repository ppa:git-core/ppa -y
    sudo apt-get update
-   sudo apt-get install git -y
+   sudo apt-get install git git-extras -y
 
    mkdir -p $HOME/otl
    ####chrome
