@@ -316,6 +316,7 @@ function update-otl {
    fi
 
    git-sync 
+   curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > ~/install-dev.sh
 } 
 
 function install-otl {
