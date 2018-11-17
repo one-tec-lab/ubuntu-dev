@@ -19,6 +19,7 @@ sudo echo
 
 
 function addreplacevalue {
+
    usesudo="$4"
    archivo="$3"
    nuevacad="$2"
@@ -55,6 +56,7 @@ function addreplacevalue {
 }
 
 function install_server {
+   sudo echo
    sudo adduser devuser
    sudo usermod -aG sudo devuser
 
@@ -121,7 +123,7 @@ function install_server {
 }
 
 function install-desktop {
-   echo
+   sudo echo
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
    /bin/echo -e "\e[1;36m# Standard XRDP Installation Script - Ver 0.2 #\e[0m"
    /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018-  #\e[0m"
