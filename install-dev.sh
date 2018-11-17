@@ -320,7 +320,10 @@ function save-desktop-settings {
       dconf dump / > ~/desktop_settings.dconf
    #fi
 }
-
+function update-otl{
+   cd ~/otl/ubuntu-dev 
+   git-sync 
+} 
 
 if [ -f ~/saved_settings.dconf ]; then
    gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null
