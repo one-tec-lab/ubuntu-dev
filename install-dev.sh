@@ -315,10 +315,10 @@ function install-otl {
  clean-otl
 }
 function save-desktop-settings {
-   if [ ! -f ~/desktop_settings.dconf ]; then
+   #if [ ! -f ~/desktop_settings.dconf ]; then
       echo "saving desktop settings"
       dconf dump / > ~/desktop_settings.dconf
-   fi
+   #fi
 }
 
 
