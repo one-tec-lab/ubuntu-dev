@@ -311,6 +311,10 @@ function clean-otl {
 
 function update-otl {
    cd ~/otl/ubuntu-dev 
+   if [ ! -d ~/otl/ubuntu-dev  ]; then
+     git clone https://github.com/one-tec-lab/ubuntu-dev.git
+   fi
+
    git-sync 
 } 
 
