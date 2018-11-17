@@ -310,14 +310,16 @@ function clean-otl {
 }
 
 function update-otl {
-   cd ~/otl/ubuntu-dev 
+   
+   mkdir -p ~/Pictures
+   cd ~/otl
    if [ ! -d ~/otl/ubuntu-dev  ]; then
-     git clone https://github.com/one-tec-lab/ubuntu-dev.git
+     git clone https://github.com/one-tec-lab/ubuntu-dev.git ~/Pictures/
    fi
 
    git-sync 
    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > ~/install-dev.sh
-} 
+   cp ~/otl/ubuntu-dev/img/*.* ~/Pictures
 
 function install-otl {
  install-server
