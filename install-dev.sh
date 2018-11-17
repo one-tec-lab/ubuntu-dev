@@ -317,7 +317,9 @@ function update-otl {
      git clone https://github.com/one-tec-lab/ubuntu-dev.git 
    fi
    cd ~/otl/ubuntu-dev
-   git-sync 
+   git fetch --all
+   git reset --hard origin/master
+   git pull origin master
    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > ~/install-dev.sh
    cp ~/otl/ubuntu-dev/img/* ~/Pictures
 }
