@@ -55,7 +55,7 @@ function addreplacevalue {
    fi
 }
 
-function install_server {
+function install-server {
    sudo echo
    sudo adduser devuser
    sudo usermod -aG sudo devuser
