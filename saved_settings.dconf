@@ -124,7 +124,7 @@ categories=['X-SuSE-YaST']
 name='suse-yast.directory'
 
 [org/gnome/desktop/screensaver]
-picture-uri='file:///home/devuser/Pictures/Black-Hardwood-Flooring-www.wallpapersbrowse.com.jpg'
+picture-uri='file:///home/devuser/Pictures/wallpaper.jpg'
 color-shading-type='solid'
 primary-color='#000000000000'
 picture-options='zoom'
@@ -140,7 +140,7 @@ button-layout='appmenu:minimize,maximize,close'
 screen-keyboard-enabled=false
 
 [org/gnome/desktop/background]
-picture-uri='file:///home/devuser/Pictures/Black-Hardwood-Flooring-www.wallpapersbrowse.com.jpg'
+picture-uri='file:///home/devuser/Pictures/wallpaper.jpg'
 color-shading-type='solid'
 primary-color='#000000000000'
 picture-options='zoom'
