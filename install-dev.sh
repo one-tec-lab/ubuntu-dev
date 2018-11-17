@@ -346,6 +346,7 @@ if [ -f ~/saved_settings.dconf ]; then
    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
    dconf load / < ~/saved_settings.dconf
    rm -rf ~/saved_settings.dconf
+   gsettings set org.gnome.desktop.background picture-uri ~/Pictures/wallpaper.jpg
 fi
 
  
