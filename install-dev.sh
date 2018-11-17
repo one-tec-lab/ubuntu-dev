@@ -316,7 +316,7 @@ function update-otl {
    if [ ! -d ~/otl/ubuntu-dev  ]; then
      git clone https://github.com/one-tec-lab/ubuntu-dev.git ~/Pictures/
    fi
-
+   cd ~/otl/ubuntu-dev
    git-sync 
    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > ~/install-dev.sh
    cp ~/otl/ubuntu-dev/img/*.* ~/Pictures
