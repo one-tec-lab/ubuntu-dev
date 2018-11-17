@@ -336,7 +336,7 @@ function save-desktop-settings {
 if [ -f ~/saved_settings.dconf ]; then
    gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null
    gsettings set org.gnome.desktop.interface icon-theme 'Pop'
-   gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme'
+   gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
    dconf load / < ~/saved_settings.dconf
    rm -rf ~/saved_settings.dconf
 fi
