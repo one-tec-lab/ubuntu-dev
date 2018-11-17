@@ -39,7 +39,7 @@ function install-server {
    sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
 
    sudo apt-get update
-   sudo apt-get upgrade -y
+   #sudo apt-get upgrade -y
    sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect ubuntu-desktop mysql-workbench gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
 
 
@@ -282,7 +282,7 @@ EOF
    sudo apt-get install gimp inkscape krita vlc -y
 
 
-   sudo apt-get -y upgrade
+   #sudo apt-get -y upgrade
    
    sudo systemctl start graphical.target
 
