@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo echo
 ################################################################
 # Script_Name : install-dev.sh
 # Description : Perform an automated standard installation
