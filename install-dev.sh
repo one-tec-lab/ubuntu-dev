@@ -320,6 +320,7 @@ function update-otl {
    git-sync 
    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > ~/install-dev.sh
    cp ~/otl/ubuntu-dev/img/*.* ~/Pictures
+}
 
 function install-otl {
  install-server
