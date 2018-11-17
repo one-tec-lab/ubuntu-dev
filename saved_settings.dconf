@@ -91,7 +91,7 @@ migrated=true
 gtk-im-module='gtk-im-context-simple'
 enable-animations=false
 icon-theme='Pop'
-gtk-theme='Adwaita-dark'
+gtk-theme='Communitheme'
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
