@@ -20,7 +20,7 @@ To configure ubuntu-dev you need to perform 3 steps:
 ### 1 Install Server Components
 Run the following commands in a console: 
 
-    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > $HOME/install-dev.sh;source install-dev.sh; instal-otl 2>&1 | tee install-dev.log
+    curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > $HOME/install-dev.sh;source install-dev.sh; install-otl 2>&1 | tee install-dev.log
 
 ### 2 Install Ubuntu desktop environment
 
