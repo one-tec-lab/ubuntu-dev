@@ -6,12 +6,9 @@ The ubuntu-dev environment installs the following components:
 
 **Desktop Environment**: Ubuntu desktop and XRDP server for remote access
 
-
 ## Requirements ##
 * UBUNTU 18.04 LTS
 * Access to a console with sudo permissions (SSH will do)
-* Git - to install git run "sudo apt-get install git -y"
-
 
 ### Install
 Run the following command in a terminal (ssh or bash):
