@@ -1,4 +1,4 @@
-# ubuntu-dev
+# otl development environment
 
 The ubuntu-dev environment installs the following components:
 
