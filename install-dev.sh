@@ -309,21 +309,24 @@ function clean-otl {
    rm ~/go.tar.gz
 }
 
+function update-otl {
+   cd ~/otl/ubuntu-dev 
+   git-sync 
+} 
+
 function install-otl {
  install-server
  install-desktop
+ update-otl
  clean-otl
 }
+
 function save-desktop-settings {
    #if [ ! -f ~/desktop_settings.dconf ]; then
       echo "saving desktop settings"
       dconf dump / > ~/desktop_settings.dconf
    #fi
 }
-function update-otl {
-   cd ~/otl/ubuntu-dev 
-   git-sync 
-} 
 
 if [ -f ~/saved_settings.dconf ]; then
    gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null
