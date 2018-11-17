@@ -17,44 +17,6 @@ sudo echo
 # Disclaimer : Script provided AS IS. Use it at your own risk....
 ##################################################################
 
-
-function addreplacevalue {
-
-   usesudo="$4"
-   archivo="$3"
-   nuevacad="$2"
-   buscar="$1"
-   temporal="$archivo.tmp.kalan"
-   listalineas=""
-   linefound=0       
-   listalineas=$(cat $archivo)
-   if [[ !  -z  $listalineas  ]];then
-     #echo "buscando lineas existentes con:"
-     #echo "$nuevacad"
-     #$usesudo >$temporal
-     while read -r linea; do
-     if [[ $linea == *"$buscar"* ]];then
-       #echo "... $linea ..."
-       if [ ! "$nuevacad" == "_DELETE_" ];then
-          ## just add new line if value is NOT _DELETE_
-          echo $nuevacad >> $temporal
-       fi
-       linefound=1
-     else
-       echo $linea >> $temporal
-
-     fi
-     done <<< "$listalineas"
-
-     cat $temporal > $archivo
-     rm -rf $temporal
-   fi
-   if [ $linefound == 0 ];then
-     echo "Adding new value to file: $nuevacad"
-     echo $nuevacad>>$archivo
-   fi
-}
-
 function install-server {
    sudo echo
    sudo adduser devuser
@@ -120,6 +82,43 @@ function install-server {
    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
    sudo apt-get update && sudo apt-get install yarn
 
+}
+
+function addreplacevalue {
+
+   usesudo="$4"
+   archivo="$3"
+   nuevacad="$2"
+   buscar="$1"
+   temporal="$archivo.tmp.kalan"
+   listalineas=""
+   linefound=0       
+   listalineas=$(cat $archivo)
+   if [[ !  -z  $listalineas  ]];then
+     #echo "buscando lineas existentes con:"
+     #echo "$nuevacad"
+     #$usesudo >$temporal
+     while read -r linea; do
+     if [[ $linea == *"$buscar"* ]];then
+       #echo "... $linea ..."
+       if [ ! "$nuevacad" == "_DELETE_" ];then
+          ## just add new line if value is NOT _DELETE_
+          echo $nuevacad >> $temporal
+       fi
+       linefound=1
+     else
+       echo $linea >> $temporal
+
+     fi
+     done <<< "$listalineas"
+
+     cat $temporal > $archivo
+     rm -rf $temporal
+   fi
+   if [ $linefound == 0 ];then
+     echo "Adding new value to file: $nuevacad"
+     echo $nuevacad>>$archivo
+   fi
 }
 
 function install-desktop {
@@ -289,32 +288,8 @@ EOF
 
    wget https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/saved_settings.dconf
 
-   echo "if [ -f ~/saved_settings.dconf ]; then" > ~/RunMe
-   echo "   gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com " >> ~/RunMe
-   echo "   gsettings set org.gnome.desktop.interface icon-theme 'Pop' " >> ~/RunMe
-   echo "   gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme' " >> ~/RunMe
-   echo "   dconf load / < ~/saved_settings.dconf" >> ~/RunMe
-   echo "   rm -rf ~/saved_settings.dconf" >> ~/RunMe
-   echo "fi" >> ~/RunMe
-
-
-   chmod +x ~/RunMe
-
-   echo "source ~/RunMe" >> ~/.bashrc
-}
-function clean-otl {
-   rm ~/nodesource_setup.sh
-   rm ~/google-chrome-stable_current_amd64.deb 
-   rm ~/go.tar.gz
-}
-
-function install-otl {
- install-server
- install-desktop
- clean-otl
-}
-
-mkdir -p ~/.config/autostart
+   mkdir -p ~/.config/autostart
+   
 bash -c "cat >~/.config/autostart/gnome-terminal.desktop" <<-EOF
 [Desktop Entry]
 Type=Application
@@ -327,3 +302,34 @@ Name=Terminal
 Comment[en_NG]=Start Terminal On Startup
 Comment=Start Terminal On Startup
 EOF
+
+echo "source ~/install-dev.sh" >> ~/.bashrc
+}
+
+function clean-otl {
+   rm ~/nodesource_setup.sh
+   rm ~/google-chrome-stable_current_amd64.deb 
+   rm ~/go.tar.gz
+}
+
+function install-otl {
+ install-server
+ install-desktop
+ clean-otl
+}
+
+
+if [ -f ~/saved_settings.dconf ]; then
+   gnome-shell-extension-tool -e dash-to-panel@jderose9.github.com 2>/dev/null
+   gsettings set org.gnome.desktop.interface icon-theme 'Pop'
+   gsettings set org.gnome.desktop.interface gtk-theme 'Communitheme'
+   dconf load / < ~/saved_settings.dconf
+   rm -rf ~/saved_settings.dconf
+fi
+
+if [ ! -f ~/desktop_settings.dconf ]; then
+   echo "saving desktop settings"
+   dconf dump / > ~/desktop_settings.dconf
+fi
+
+ 
