@@ -314,7 +314,7 @@ function update-otl {
    mkdir -p ~/Pictures
    cd ~/otl
    if [ ! -d ~/otl/ubuntu-dev  ]; then
-     git clone https://github.com/one-tec-lab/ubuntu-dev.git ~/Pictures/
+     git clone https://github.com/one-tec-lab/ubuntu-dev.git 
    fi
    cd ~/otl/ubuntu-dev
    git-sync 
