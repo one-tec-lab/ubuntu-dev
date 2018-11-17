@@ -320,7 +320,7 @@ function save-desktop-settings {
       dconf dump / > ~/desktop_settings.dconf
    #fi
 }
-function update-otl{
+function update-otl {
    cd ~/otl/ubuntu-dev 
    git-sync 
 } 
