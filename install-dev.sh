@@ -284,8 +284,8 @@ EOF
 
 
    sudo apt-get -y upgrade
+   
    sudo systemctl start graphical.target
-
 
    wget https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/saved_settings.dconf
 
@@ -304,8 +304,6 @@ EOF
 }
 function clean-otl {
    rm ~/nodesource_setup.sh
-   rm ~/install-server.sh
-   rm ~/install-desktop.sh
    rm ~/google-chrome-stable_current_amd64.deb 
    rm ~/go.tar.gz
 }
@@ -315,3 +313,17 @@ function install-otl {
  install-desktop
  clean-otl
 }
+
+mkdir -p ~/.config/autostart
+bash -c "cat >~/.config/autostart/gnome-terminal.desktop" <<-EOF
+[Desktop Entry]
+Type=Application
+Exec=gnome-terminal
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_NG]=Terminal
+Name=Terminal
+Comment[en_NG]=Start Terminal On Startup
+Comment=Start Terminal On Startup
+EOF
