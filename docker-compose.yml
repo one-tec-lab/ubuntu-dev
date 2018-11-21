@@ -24,6 +24,15 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=9000"
+      #- "traefik.docker.network=web"
+      - "traefik.backend=portainer-be"
+      #this domain is used for app
+      - "traefik.frontend.rule=Host:portainer.localhost"
+      #this is used for website.All I want is prxy "https://www.test.mydomain.com/_/" to this container
+      #- "traefik.frontend.rule1=Host:www.test.mydomain.com;PathPrefixStrp:/_"    
     container_name: portainer
 
 
