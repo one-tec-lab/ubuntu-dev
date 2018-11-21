@@ -50,8 +50,8 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: always
-    networks:
-      - internal
+    #networks:
+    #  - internal
     labels:
       - traefik.enable=false
     container_name: mysql
