@@ -349,4 +349,4 @@ if [ -f ~/saved_settings.dconf ]; then
    gsettings set org.gnome.desktop.background picture-uri ~/Pictures/wallpaper.jpg
 fi
 
- 
+ export PROXY_DOMAIN=localhost
