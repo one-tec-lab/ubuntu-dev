@@ -407,9 +407,11 @@ function configure-stack {
    #tar -xzf guacamole-auth-jdbc-${GUACVERSION}.tar.gz
 
    # Start MySQL
-    MYSQL_ROOT_PASSWORD=$mysqlrootpassword
+    
     
     cd ~/otl/ubuntu-dev
+    MYSQL_ROOT_PASSWORD=$mysqlrootpassword
+    export MYSQL_ROOT_PASSWORD=$mysqlrootpassword
     sudo docker-compose up -d
     
    #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
