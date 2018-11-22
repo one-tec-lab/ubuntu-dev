@@ -18,9 +18,9 @@
 
 function install-server {
    sudo echo
-   sudo adduser devuser
-   sudo usermod -aG sudo devuser
-
+   ##sudo adduser devuser
+   ##sudo usermod -aG sudo devuser
+   
    cd $HOME/
  
    sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
