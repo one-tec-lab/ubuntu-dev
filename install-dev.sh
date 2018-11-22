@@ -37,7 +37,7 @@ function install-server {
 
    sudo apt-get update
    #sudo apt-get upgrade -y
-   sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect ubuntu-desktop mysql-workbench gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
+   sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect ubuntu-desktop mysql-workbench mysql-client wget gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
 
 
    ######## docker
@@ -391,7 +391,7 @@ function configure-stack {
 
    #Install Stuff
    #sudo apt-get update
-   sudo apt-get -y install mysql-client wget
+   #sudo apt-get -y install mysql-client wget
 
    # Set SERVER to be the preferred download server from the Apache CDN
    SERVER="http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/${GUACVERSION}"
