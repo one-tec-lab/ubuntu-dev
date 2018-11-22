@@ -51,17 +51,21 @@ services:
     restart: always
     ports:
       - 8090:8080
+    links:
+       - mysql
+       - guacd
+       
     environment:
-      - MYSQL_HOSTNAME: 127.0.0.1 
-      - MYSQL_DATABASE: guacamole_db
-      - MYSQL_USER: guacamole_user
-      - MYSQL_PASSWORD:
+      MYSQL_HOSTNAME: 127.0.0.1
+      MYSQL_DATABASE: guacamole_db
+      MYSQL_USER: guacamole_user
+      MYSQL_PASSWORD:
    
   # export MYSQL_ROOT_PASSWORD=secure_database_password  
   mysql:
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD:
+      MYSQL_ROOT_PASSWORD:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: always
