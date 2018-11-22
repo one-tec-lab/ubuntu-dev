@@ -65,13 +65,15 @@ function install-server {
    
    cd $HOME/
    if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
-      echo "Disable auto-updates. Restart the system and run the installation command again "
-      sudo source $HOME/install-dev.sh
-     sudo addreplacevalue 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
+     echo "Disable auto-updates. Restart the system and run the installation command again "
+     echo "A backup of /etc/apt/apt.conf.d/20auto-upgrades was created at /etc/backup_20auto-upgrades"
+     sudo cp /etc/apt/apt.conf.d/20auto-upgrades /etc/backup_apt_apt.conf.d_20auto-upgrades
+     sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
+     sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
+
+     #sudo addreplacevalue 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
      exit
    fi
-   #sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
-   #sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
 
    sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
 
