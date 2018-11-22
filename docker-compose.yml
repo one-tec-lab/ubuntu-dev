@@ -43,20 +43,26 @@ services:
 
   #docker run --restart=always --name guacd -d guacamole/guacd
    #docker run --restart=always --name guacamole  --link mysql:mysql --link guacd:guacd -e MYSQL_HOSTNAME=127.0.0.1 -e MYSQL_DATABASE=guacamole_db -e MYSQL_USER=guacamole_user -e MYSQL_PASSWORD=$guacdbuserpassword --detach -p 8090:8080 guacamole/guacamole
+  
   guacd:
     image: guacamole/guacd
     restart: always
+    
   guacamole:
     image: guacamole/guacamole
     restart: always
+    depends_on:
+      - guacd
+      - mysql
     ports:
       - 8090:8080
     links:
        - mysql
-       - guacd:guacd
+       - guacd
        
     environment:
-      MYSQL_HOSTNAME: 127.0.0.1
+      GUACD_HOSTNAME: guacd
+      MYSQL_HOSTNAME: mysql
       MYSQL_DATABASE: guacamole_db
       MYSQL_USER: guacamole_user
       MYSQL_PASSWORD:
