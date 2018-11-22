@@ -66,6 +66,7 @@ function install-server {
    cd $HOME/
    if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
       echo "Disable auto-updates. Restart the system and run the installation command again "
+      sudo source $HOME/install-dev.sh
      sudo addreplacevalue 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
      exit
    fi
