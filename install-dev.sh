@@ -396,21 +396,21 @@ function configure-stack {
    # Set SERVER to be the preferred download server from the Apache CDN
    SERVER="http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/${GUACVERSION}"
 
-   # Download Guacamole authentication extensions
-   wget -O guacamole-auth-jdbc-${GUACVERSION}.tar.gz ${SERVER}/binary/guacamole-auth-jdbc-${GUACVERSION}.tar.gz
-   if [ $? -ne 0 ]; then
-       echo "Failed to download guacamole-auth-jdbc-${GUACVERSION}.tar.gz"
-       echo "${SERVER}/binary/guacamole-auth-jdbc-${GUACVERSION}.tar.gz"
-       exit
-   fi
+   ## Download Guacamole authentication extensions
+   #wget -O guacamole-auth-jdbc-${GUACVERSION}.tar.gz ${SERVER}/binary/guacamole-auth-jdbc-${GUACVERSION}.tar.gz
+   #if [ $? -ne 0 ]; then
+   #    echo "Failed to download guacamole-auth-jdbc-${GUACVERSION}.tar.gz"
+   #    echo "${SERVER}/binary/guacamole-auth-jdbc-${GUACVERSION}.tar.gz"
+   #    exit
+   #fi
 
-   tar -xzf guacamole-auth-jdbc-${GUACVERSION}.tar.gz
+   #tar -xzf guacamole-auth-jdbc-${GUACVERSION}.tar.gz
 
    # Start MySQL
     export MYSQL_ROOT_PASSWORD=$mysqlrootpassword
     
     cd ~/otl/ubuntu-dev
-    docker-compose up -d
+    sudo docker-compose up -d
     
    #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
 
@@ -428,18 +428,22 @@ function configure-stack {
 
    # Execute SQL Code
    echo $SQLCODE | mysql -h 127.0.0.1 -P 3306 -u root -p$mysqlrootpassword
-   docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+   sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
    cat initdb.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
    #cat guacamole-auth-jdbc-${GUACVERSION}/mysql/schema/*.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
 
-   #docker run --restart=always --name guacd -d guacamole/guacd
-   #docker run --restart=always --name guacamole  --link mysql:mysql --link guacd:guacd -e MYSQL_HOSTNAME=127.0.0.1 -e MYSQL_DATABASE=guacamole_db -e MYSQL_USER=guacamole_user -e MYSQL_PASSWORD=$guacdbuserpassword --detach -p 8080:8080 guacamole/guacamole
+   docker run --restart=always --name guacd -d guacamole/guacd
+   docker run --restart=always --name guacamole  --link mysql:mysql --link guacd:guacd -e MYSQL_HOSTNAME=127.0.0.1 -e MYSQL_DATABASE=guacamole_db -e MYSQL_USER=guacamole_user -e MYSQL_PASSWORD=$guacdbuserpassword --detach -p 8090:8080 guacamole/guacamole
 
    #rm -rf guacamole-auth-jdbc-${GUACVERSION}*
 
 }
 
-
+function clean-docker {
+   docker system prune -a
+   docker volume prune
+ 
+}
 
 
 
