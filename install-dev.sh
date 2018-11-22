@@ -342,6 +342,7 @@ function default-desktop-settings {
 }
 
 function configure-stack {
+   
    GUACVERSION="0.9.14"
 
    # Get script arguments for non-interactive mode
@@ -418,7 +419,9 @@ function configure-stack {
    # Sleep to let MySQL load (there's probably a better way to do this)
    echo "Waiting 20 seconds for MySQL to load"
    sleep 20
-
+    
+   docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+   
    # Create the Guacamole database and the user account
    # SQL Code
    SQLCODE="
@@ -429,7 +432,7 @@ function configure-stack {
 
    # Execute SQL Code
    echo $SQLCODE | mysql -h 127.0.0.1 -P 3306 -u root -p$mysqlrootpassword
-   sudo docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+   
    cat initdb.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
    #cat guacamole-auth-jdbc-${GUACVERSION}/mysql/schema/*.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
    
