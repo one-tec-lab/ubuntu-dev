@@ -41,12 +41,27 @@ services:
       - "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"    
     container_name: portainer
 
-
+  #docker run --restart=always --name guacd -d guacamole/guacd
+   #docker run --restart=always --name guacamole  --link mysql:mysql --link guacd:guacd -e MYSQL_HOSTNAME=127.0.0.1 -e MYSQL_DATABASE=guacamole_db -e MYSQL_USER=guacamole_user -e MYSQL_PASSWORD=$guacdbuserpassword --detach -p 8090:8080 guacamole/guacamole
+  guacd:
+    image: guacamole/guacd
+    restart: always
+  guacamole:
+    image: guacamole/guacamole
+    restart: always
+    ports:
+      - 8090:8080
+    environment:
+      - MYSQL_HOSTNAME: 127.0.0.1 
+      - MYSQL_DATABASE: guacamole_db
+      - MYSQL_USER: guacamole_user
+      - MYSQL_PASSWORD:
+   
   # export MYSQL_ROOT_PASSWORD=secure_database_password  
   mysql:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD:
+      - MYSQL_ROOT_PASSWORD:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: always
