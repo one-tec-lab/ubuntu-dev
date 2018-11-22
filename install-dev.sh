@@ -445,8 +445,8 @@ function configure-stack {
 function clean-docker {
    cd ~/otl/ubuntu-dev
    docker-compose down
-   docker stop guacd
-   docker rm guacd
+   #docker stop guacd
+   #docker rm guacd
    docker system prune -a
    docker volume prune
  
