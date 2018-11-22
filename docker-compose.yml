@@ -53,7 +53,7 @@ services:
       - 8090:8080
     links:
        - mysql
-       - guacd
+       - guacd:guacd
        
     environment:
       MYSQL_HOSTNAME: 127.0.0.1
