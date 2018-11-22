@@ -16,6 +16,42 @@
 # Disclaimer : Script provided AS IS. Use it at your own risk....
 ##################################################################
 
+function addreplacevalue {
+
+   usesudo="$4"
+   archivo="$3"
+   nuevacad="$2"
+   buscar="$1"
+   temporal="$archivo.tmp.kalan"
+   listalineas=""
+   linefound=0       
+   listalineas=$(cat $archivo)
+   if [[ !  -z  $listalineas  ]];then
+     #echo "buscando lineas existentes con:"
+     #echo "$nuevacad"
+     #$usesudo >$temporal
+     while read -r linea; do
+     if [[ $linea == *"$buscar"* ]];then
+       #echo "... $linea ..."
+       if [ ! "$nuevacad" == "_DELETE_" ];then
+          ## just add new line if value is NOT _DELETE_
+          echo $nuevacad >> $temporal
+       fi
+       linefound=1
+     else
+       echo $linea >> $temporal
+
+     fi
+     done <<< "$listalineas"
+
+     cat $temporal > $archivo
+     rm -rf $temporal
+   fi
+   if [ $linefound == 0 ];then
+     echo "Adding new value to file: $nuevacad"
+     echo $nuevacad>>$archivo
+   fi
+}
 function install-server {
 
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
@@ -96,42 +132,6 @@ function install-server {
    echo
 }
 
-function addreplacevalue {
-
-   usesudo="$4"
-   archivo="$3"
-   nuevacad="$2"
-   buscar="$1"
-   temporal="$archivo.tmp.kalan"
-   listalineas=""
-   linefound=0       
-   listalineas=$(cat $archivo)
-   if [[ !  -z  $listalineas  ]];then
-     #echo "buscando lineas existentes con:"
-     #echo "$nuevacad"
-     #$usesudo >$temporal
-     while read -r linea; do
-     if [[ $linea == *"$buscar"* ]];then
-       #echo "... $linea ..."
-       if [ ! "$nuevacad" == "_DELETE_" ];then
-          ## just add new line if value is NOT _DELETE_
-          echo $nuevacad >> $temporal
-       fi
-       linefound=1
-     else
-       echo $linea >> $temporal
-
-     fi
-     done <<< "$listalineas"
-
-     cat $temporal > $archivo
-     rm -rf $temporal
-   fi
-   if [ $linefound == 0 ];then
-     echo "Adding new value to file: $nuevacad"
-     echo $nuevacad>>$archivo
-   fi
-}
 
 function install-desktop {
 
