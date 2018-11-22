@@ -17,6 +17,12 @@
 ##################################################################
 
 function install-server {
+
+   /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
+   /bin/echo -e "\e[1;36m# Standard OTl SERVER Installation Script - Ver 0.2 #\e[0m"
+   /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018-  #\e[0m"
+   /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
+   echo
    sudo echo
    ##sudo adduser devuser
    ##sudo usermod -aG sudo devuser
@@ -37,7 +43,7 @@ function install-server {
 
    sudo apt-get update
    #sudo apt-get upgrade -y
-   sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common openconnect ubuntu-desktop mysql-workbench mysql-client wget gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
+   sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common wget ufw openconnect  -y
 
 
    ######## docker
@@ -78,7 +84,13 @@ function install-server {
    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
    sudo apt-get update && sudo apt-get install yarn
-
+   echo
+   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
+   /bin/echo -e "\e[1;36m# Installation Completed\e[0m"
+   /bin/echo -e "\e[1;36m# Please test your Server configuration....\e[0m"
+   /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018 - Ver 0.2 - install-dev.sh\e[0m"
+   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
+   echo
 }
 
 function addreplacevalue {
@@ -119,9 +131,9 @@ function addreplacevalue {
 }
 
 function install-desktop {
-   sudo echo
+
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;36m# Standard XRDP Installation Script - Ver 0.2 #\e[0m"
+   /bin/echo -e "\e[1;36m# Standard development DESKTOP Installation Script - Ver 0.2 #\e[0m"
    /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018-  #\e[0m"
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
    echo
@@ -141,28 +153,17 @@ function install-desktop {
    echo $version
 
    #---------------------------------------------------#
-   # Step 1 - Install xRDP Software....
+   # Step 1 - Install Desktop Software....
    #---------------------------------------------------#
    echo
    /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Installing XRDP Packages...Proceeding... # \e[0m"
+   /bin/echo -e "\e[1;33m! Installing DESKTOP Packages...Proceeding... # \e[0m"
    /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
    echo
+   sudo echo
+   sudo apt-get install ubuntu-desktop gufw mysql-workbench mysql-client  gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
 
-   sudo apt-get install xrdp -y
-
-   #---------------------------------------------------#
-   # Step 2 - Install Gnome Tweak Tool....
-   #---------------------------------------------------#
-   echo
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Installing Gnome Tweak...Proceeding... # \e[0m"
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   echo
-
-   sudo apt-get install gnome-tweak-tool -y
-
-   #---------------------------------------------------#
+    #---------------------------------------------------#
    # Step 3 - Allow console Access ....
    #---------------------------------------------------#
    echo
@@ -204,17 +205,7 @@ EOF
    gnome-shell-extension-tool -e ubuntu-appindicators@ubuntu.com
    echo
 
-   #---------------------------------------------------#
-   # Step 6 - Credits ....
-   #---------------------------------------------------#
-   echo
-   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;36m# Installation Completed\e[0m"
-   /bin/echo -e "\e[1;36m# Please test your xRDP configuration....\e[0m"
-   /bin/echo -e "\e[1;36m# Written by Griffon - April 2018 - Ver 0.2 - Std-Xrdp-Install-0.2.sh\e[0m"
-   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
-   echo
-
+ 
    sudo ufw allow 3389/tcp
 
 
@@ -301,6 +292,18 @@ Comment=Start Terminal On Startup
 EOF
 
 echo "source ~/install-dev.sh" >> ~/.bashrc
+
+  #---------------------------------------------------#
+   # Step 6 - Credits ....
+   #---------------------------------------------------#
+   echo
+   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
+   /bin/echo -e "\e[1;36m# Installation Completed\e[0m"
+   /bin/echo -e "\e[1;36m# Please test your Desktop configuration....\e[0m"
+   /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018 - Ver 0.2 - install-dev.sh\e[0m"
+   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
+   echo
+
 }
 
 function clean-otl {
