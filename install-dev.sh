@@ -416,8 +416,8 @@ function configure-stack {
    #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
 
    # Sleep to let MySQL load (there's probably a better way to do this)
-   echo "Waiting 30 seconds for MySQL to load"
-   sleep 30
+   echo "Waiting 5 seconds for MySQL to load"
+   sleep 5
 
    # Create the Guacamole database and the user account
    # SQL Code
