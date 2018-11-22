@@ -28,9 +28,12 @@ function install-server {
    ##sudo usermod -aG sudo devuser
    
    cd $HOME/
- 
-   sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
-   sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
+   if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
+      echo "Disable auto-updates. Restart the system and run the installation command again "
+     sudo addreplacevalue 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
+   fi
+   #sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
+   #sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
 
    sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
 
