@@ -412,7 +412,7 @@ function configure-stack {
     cd ~/otl/ubuntu-dev
     MYSQL_ROOT_PASSWORD=$mysqlrootpassword
     export MYSQL_ROOT_PASSWORD=$mysqlrootpassword
-    sudo docker-compose up -d
+    MYSQL_ROOT_PASSWORD=$mysqlrootpassword docker-compose up -d
     
    #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
 
