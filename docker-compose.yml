@@ -19,7 +19,7 @@ services:
     image: portainer/portainer
     command: -H unix:///var/run/docker.sock
     restart: always
-    network_mode: bridge
+    #network_mode: bridge
     ports:
       - 9000:9000
     volumes:
@@ -48,7 +48,7 @@ services:
   guacd:
     image: guacamole/guacd
     restart: always
-    network_mode: bridge
+    #network_mode: bridge
     
   guacamole:
     image: guacamole/guacamole
@@ -56,7 +56,7 @@ services:
     depends_on:
       - guacd
       - mysql
-    network_mode: bridge
+    #network_mode: bridge
     ports:
       - 8090:8080
     links:
@@ -78,7 +78,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: always
-    network_mode: bridge
+    #network_mode: bridge
     ports:
       - 3306:3306
     #networks:
