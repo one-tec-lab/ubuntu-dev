@@ -8,6 +8,9 @@ services:
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
     restart: always
     #network_mode: bridge
+    networks:
+      - traefik_proxy
+      - default
     ports:
       - "80:80"     # The HTTP port
       - "8080:8080" # The Web UI (enabled by --api)
@@ -20,6 +23,8 @@ services:
     command: -H unix:///var/run/docker.sock
     restart: always
     #network_mode: bridge
+    networks:
+      - traefik_proxy
     ports:
       - 9000:9000
     volumes:
@@ -49,6 +54,9 @@ services:
     image: guacamole/guacd
     restart: always
     #network_mode: bridge
+    networks:
+      - traefik_proxy
+
     
   guacamole:
     image: guacamole/guacamole
@@ -57,6 +65,9 @@ services:
       - guacd
       - mysql
     #network_mode: bridge
+    networks:
+      - traefik_proxy
+
     ports:
       - 8090:8080
     links:
@@ -69,7 +80,14 @@ services:
       MYSQL_DATABASE: guacamole_db
       MYSQL_USER: guacamole_user
       MYSQL_PASSWORD:
-   
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=guacamole"
+      - "traefik.frontend.rule=Host:guac.${DOMAINNAME}; AddPrefix:/guacamole"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik_proxy"   
+      
   # export MYSQL_ROOT_PASSWORD=secure_database_password  
   mysql:
     image: mysql:5.7
@@ -79,6 +97,8 @@ services:
       - mysql_data:/var/lib/mysql
     restart: always
     #network_mode: bridge
+    networks:
+      - traefik_proxy
     ports:
       - 3306:3306
     #networks:
@@ -91,4 +111,9 @@ volumes:
   portainer_data:
   mysql_data:
 
-
+networks:
+  traefik_proxy:
+    external:
+      name: traefik_proxy
+  default:
+    driver: bridge
