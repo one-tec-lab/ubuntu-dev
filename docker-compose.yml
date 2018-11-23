@@ -2,15 +2,31 @@ version: '3'
 
 # docker-compose up -d
 
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
 services:
+  init-guac-db:
+    container_name: init-guac-db
+    image: guacamole/guacamole:latest
+    networks:
+      - internal
+
+    command: ["/bin/sh", "-c", "test -e /init/initdb.sql && echo 'init file already exists' || /opt/guacamole/bin/initdb.sh --mysql > /init/initdb.sql" ]
+    volumes:
+      - dbinit:/init
+      
   reverse-proxy:
     image: traefik # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
     restart: always
     #network_mode: bridge
     networks:
-      - traefik_proxy
-      - default
+      - web
+      - internal
     ports:
       - "80:80"     # The HTTP port
       - "8080:8080" # The Web UI (enabled by --api)
@@ -24,7 +40,7 @@ services:
     restart: always
     #network_mode: bridge
     networks:
-      - traefik_proxy
+      - web
     ports:
       - 9000:9000
     volumes:
@@ -55,7 +71,7 @@ services:
     restart: always
     #network_mode: bridge
     networks:
-      - traefik_proxy
+      - web
 
     
   guacamole:
@@ -66,7 +82,8 @@ services:
       - mysql
     #network_mode: bridge
     networks:
-      - traefik_proxy
+      - web
+      - internal
 
     ports:
       - 8090:8080
@@ -98,7 +115,7 @@ services:
     restart: always
     #network_mode: bridge
     networks:
-      - traefik_proxy
+      - internal
     ports:
       - 3306:3306
     #networks:
@@ -110,10 +127,6 @@ services:
 volumes:
   portainer_data:
   mysql_data:
+  dbinit:
+  dbdata:
 
-networks:
-  traefik_proxy:
-    external:
-      name: traefik_proxy
-  default:
-    driver: bridge
