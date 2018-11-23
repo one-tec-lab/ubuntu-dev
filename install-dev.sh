@@ -214,8 +214,10 @@ EOF
 
  
    sudo ufw allow 3389/tcp
-
-
+   sudo ufw allow 22/tcp
+   sudo ufw allow 80/tcp
+   sudo ufw allow 443/tcp
+   
    #sudo xrdp-build-pulse-modules
    cd /tmp
    sudo apt source pulseaudio
@@ -421,7 +423,7 @@ function configure-stack {
     
     
     cd ~/otl/ubuntu-dev
-    docker network create traefik_proxy
+    #docker network create traefik_proxy
     MYSQL_ROOT_PASSWORD=$mysqlrootpassword docker-compose up -d mysql
     
    #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
