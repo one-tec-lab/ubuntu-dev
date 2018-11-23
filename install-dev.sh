@@ -432,7 +432,7 @@ function configure-stack {
    echo "Waiting 20 seconds for MySQL to load"
    sleep 20
     
-   docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+   #####docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
    
    # Create the Guacamole database and the user account
    # SQL Code
@@ -443,9 +443,12 @@ function configure-stack {
    flush privileges;"
 
    # Execute SQL Code
-   echo $SQLCODE | mysql -h 127.0.0.1 -P 3306 -u root -p$mysqlrootpassword
    
-   cat initdb.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
+   docker-compose up init-guac-db
+   #####echo $SQLCODE | mysql -h 127.0.0.1 -P 3306 -u root -p$mysqlrootpassword
+   
+   #####cat initdb.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
+   
    #cat guacamole-auth-jdbc-${GUACVERSION}/mysql/schema/*.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
    
    MYSQL_PASSWORD=$guacdbuserpassword docker-compose up -d
