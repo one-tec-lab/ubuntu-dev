@@ -421,7 +421,7 @@ function configure-stack {
     
     
     cd ~/otl/ubuntu-dev
-
+    docker network create traefik_proxy
     MYSQL_ROOT_PASSWORD=$mysqlrootpassword docker-compose up -d mysql
     
    #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
