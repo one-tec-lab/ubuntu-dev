@@ -425,8 +425,6 @@ function configure-stack {
     cd ~/otl/ubuntu-dev
     docker network create web
     MYSQL_ROOT_PASSWORD=$mysqlrootpassword docker-compose up -d mysql
-    
-   #docker run --restart=always --detach --name=mysql --env="MYSQL_ROOT_PASSWORD=$mysqlrootpassword" --publish 3306:3306 mysql
 
    # Sleep to let MySQL load (there's probably a better way to do this)
    echo "Waiting 20 seconds for MySQL to load"
@@ -444,10 +442,12 @@ function configure-stack {
 
    # Execute SQL Code
    
+   mysql_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql )
+
    
-   echo $SQLCODE | mysql -h 127.0.0.1 -P 3306 -u root -p$mysqlrootpassword
+   echo $SQLCODE | mysql -h $mysql_ip -P 3306 -u root -p$mysqlrootpassword
    
-   cat initdb.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
+   cat initdb.sql | mysql -u root -p$mysqlrootpassword -h $mysql_ip -P 3306 guacamole_db
    
    #cat guacamole-auth-jdbc-${GUACVERSION}/mysql/schema/*.sql | mysql -u root -p$mysqlrootpassword -h 127.0.0.1 -P 3306 guacamole_db
    
