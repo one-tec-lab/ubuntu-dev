@@ -92,7 +92,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=guacamole"
-      - "traefik.frontend.rule=Host:guac.${PROXY_DOMAIN}; AddPrefix:/guacamole"
+      - "traefik.frontend.rule=Port:8090; AddPrefix:/guacamole"
       - "traefik.port=8080"
       - "traefik.docker.network=traefik_proxy"   
       
