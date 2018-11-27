@@ -64,6 +64,28 @@ services:
     networks:
       - web
 
+  strapi:
+    image: strapi/strapi
+    restart: always
+    depends_on:
+      - mysql
+    #network_mode: bridge
+    networks:
+      - web
+      - internal
+
+    ports:
+      - 1337:1337
+    links:
+       - mysql
+       
+    environment:
+      DATABASE_CLIENT: mysql
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_NAME: api_db
+      DATABASE_USERNAME : api_user
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD}
     
   guacamole:
     image: guacamole/guacamole
