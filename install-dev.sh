@@ -440,7 +440,7 @@ function configure-stack {
    GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'%'; 
    create database api_db; 
    create user 'api_user'@'%' identified by '$dbuserpassword'; 
-   GRANT SELECT,INSERT,UPDATE,DELETE ON api_db.* TO 'api_user'@'%'; 
+   GRANT ALL PRIVILEGES ON api_db.* TO 'api_user'@'%'; 
    flush privileges;"
 
    # Execute SQL Code
