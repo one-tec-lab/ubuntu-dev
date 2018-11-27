@@ -86,7 +86,7 @@ services:
       DATABASE_HOST: mysql
       DATABASE_PORT: 3306
       DATABASE_NAME: api_db
-      DATABASE_USERNAME : api_user
+      DATABASE_USERNAME: api_user
       DATABASE_PASSWORD:
     
   guacamole:
