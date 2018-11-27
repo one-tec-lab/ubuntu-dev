@@ -375,7 +375,7 @@ function configure-stack {
    # Get MySQL root password and Guacamole User password
    if [ -n "$mysqlpwd" ] && [ -n "$guacpwd" ]; then
            mysqlrootpassword=$mysqlpwd
-           guacdbuserpassword=$guacpwd
+           dbuserpassword=$guacpwd
    else
        echo 
        while true
@@ -391,11 +391,11 @@ function configure-stack {
        echo
        while true
        do
-           read -s -p "Enter a Guacamole User Database Password: " guacdbuserpassword
+           read -s -p "Enter a Guacamole User Database Password: " dbuserpassword
            echo
            read -s -p "Confirm Guacamole User Database Password: " password2
            echo
-           [ "$guacdbuserpassword" = "$password2" ] && break
+           [ "$dbuserpassword" = "$password2" ] && break
            echo "Passwords don't match. Please try again."
            echo
        done
@@ -432,12 +432,15 @@ function configure-stack {
     
    docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
    
-   # Create the Guacamole database and the user account
+   # Create the databases and the user account
    # SQL Code
    SQLCODE="
    create database guacamole_db; 
-   create user 'guacamole_user'@'%' identified by '$guacdbuserpassword'; 
+   create user 'guacamole_user'@'%' identified by '$dbuserpassword'; 
    GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'%'; 
+   create database api_db; 
+   create user 'api_user'@'%' identified by '$dbuserpassword'; 
+   GRANT SELECT,INSERT,UPDATE,DELETE ON api_db.* TO 'api_user'@'%'; 
    flush privileges;"
 
    # Execute SQL Code
