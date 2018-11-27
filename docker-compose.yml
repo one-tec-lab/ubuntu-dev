@@ -78,8 +78,10 @@ services:
       - 1337:1337
     links:
        - mysql
-       
+    volumes: 
+      - ./strapi-app:/usr/src/api/strapi-app
     environment:
+      APP_NAME: strapi-app
       DATABASE_CLIENT: mysql
       DATABASE_HOST: mysql
       DATABASE_PORT: 3306
