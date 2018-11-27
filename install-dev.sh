@@ -391,9 +391,9 @@ function configure-stack {
        echo
        while true
        do
-           read -s -p "Enter a Guacamole User Database Password: " dbuserpassword
+           read -s -p "Enter a database user Password: " dbuserpassword
            echo
-           read -s -p "Confirm Guacamole User Database Password: " password2
+           read -s -p "Confirm database user Password: " password2
            echo
            [ "$dbuserpassword" = "$password2" ] && break
            echo "Passwords don't match. Please try again."
