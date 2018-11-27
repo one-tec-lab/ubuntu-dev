@@ -438,7 +438,7 @@ function configure-stack {
    create database guacamole_db; 
    create user 'guacamole_user'@'%' identified by '$dbuserpassword'; 
    GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'%'; 
-   create database api_db; 
+   create database api_db CHARACTER SET utf8 COLLATE utf8_general_ci; 
    create user 'api_user'@'%' identified by '$dbuserpassword'; 
    GRANT ALL PRIVILEGES ON api_db.* TO 'api_user'@'%'; 
    flush privileges;"
