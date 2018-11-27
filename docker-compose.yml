@@ -85,7 +85,7 @@ services:
       DATABASE_PORT: 3306
       DATABASE_NAME: api_db
       DATABASE_USERNAME : api_user
-      DATABASE_PASSWORD: ${MYSQL_PASSWORD}
+      DATABASE_PASSWORD: "${MYSQL_PASSWORD}"
     
   guacamole:
     image: guacamole/guacamole
