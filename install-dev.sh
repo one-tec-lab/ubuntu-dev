@@ -144,17 +144,7 @@ function install-desktop {
    /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018-  #\e[0m"
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
    echo
-
-   #---------------------------------------------------#
-   # Step 0 - Try to Detect Ubuntu Version....
-   #---------------------------------------------------#
-
-   echo
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Detecting Ubuntu version # \e[0m"
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   echo
-
+ 
    version=$(lsb_release -d | awk -F":" '/Description/ {print $2}')
 
    echo $version
@@ -163,31 +153,23 @@ function install-desktop {
    # Step 1 - Install Desktop Software....
    #---------------------------------------------------#
    echo
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Installing DESKTOP Packages...Proceeding... # \e[0m"
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
+   /bin/echo -e "---------------------------------------------"
+   /bin/echo -e " Installing DESKTOP Packages...Proceeding..."
+   /bin/echo -e "---------------------------------------------"
    echo
    sudo echo
    sudo apt-get install ubuntu-desktop gufw mysql-workbench mysql-client  gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
-
-    #---------------------------------------------------#
-   # Step 3 - Allow console Access ....
-   #---------------------------------------------------#
    echo
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Granting Console Access...Proceeding... # \e[0m"
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
+   /bin/echo -e "---------------------------------------------"
+   /bin/echo -e " Granting Console Access...Proceeding... "
+   /bin/echo -e "---------------------------------------------"
    echo
 
    sudo sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config
-
-   #---------------------------------------------------#
-   # Step 4 - create policies exceptions ....
-   #---------------------------------------------------#
    echo
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Creating Polkit File...Proceeding... # \e[0m"
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
+   /bin/echo -e "---------------------------------------------"
+   /bin/echo -e " Creating Polkit File...Proceeding... "
+   /bin/echo -e "---------------------------------------------"
    echo
 
    sudo bash -c "cat >/etc/polkit-1/localauthority/50-local.d/45-allow.colord.pkla" <<-EOF
@@ -199,14 +181,10 @@ ResultInactive=no
 ResultActive=yes
 EOF
 
-
-   #---------------------------------------------------#
-   # Step 5 - Enable Extensions ....
-   #---------------------------------------------------#
    echo
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;33m! Install Extensions Dock...Proceeding... # \e[0m"
-   /bin/echo -e "\e[1;33m#---------------------------------------------#\e[0m"
+   /bin/echo -e "---------------------------------------------"
+   /bin/echo -e " Install Extensions Dock...Proceeding... "
+   /bin/echo -e "---------------------------------------------"
    echo
    gnome-shell-extension-tool -e ubuntu-dock@ubuntu.com
    gnome-shell-extension-tool -e ubuntu-appindicators@ubuntu.com
@@ -341,6 +319,23 @@ function install-otl {
  install-desktop
  update-otl
  clean-otl
+}
+
+function setup-buffalo {
+   go get -u -v -tags sqlite github.com/gobuffalo/buffalo/buffalo
+   curl https://raw.githubusercontent.com/cippaciong/buffalo_bash_completion/master/buffalo_completion.sh > ~/otl/buffalo_completion.sh
+   addreplacevalue "source ~/otl/buffalo_completion.sh" "source ~/otl/buffalo_completion.sh" ~/.bashrc
+   go get -u -v github.com/gobuffalo/buffalo-plugins
+
+   go get -u -v github.com/gobuffalo/buffalo-auth
+   go get -u -v github.com/gobuffalo/buffalo-goth
+   go get -u -v github.com/gobuffalo/buffalo-docker
+
+   go get -u -v -tags sqlite github.com/gobuffalo/pop/...
+   go install -tags sqlite github.com/gobuffalo/pop/soda
+
+   mkdir -p $GOPATH/src/github.com/one-tec-lab/
+   cd  $GOPATH/src/github.com/one-tec-lab/
 }
 
 function save-desktop-settings {
