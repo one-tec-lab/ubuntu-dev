@@ -10,13 +10,15 @@ networks:
 
 services:
   docker-hoster:
+    container_name: docker-hoster
     image: dvdarias/docker-hoster
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
       - /etc/hosts:/tmp/hosts
-    container_name: docker-hoster
+
     
   reverse-proxy:
+    container_name: traefik
     image: traefik # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
     restart: always
@@ -25,13 +27,14 @@ services:
       - web
       - internal
     ports:
-      - "80:80"     # The HTTP port
-      - "8080:8080" # The Web UI (enabled by --api)
+      - 80:80     # The HTTP port
+      - 127.0.0.1:8080:8080 # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-    container_name: traefik
+
 
   portainer:
+    container_name: portainer
     image: portainer/portainer
     command: -H unix:///var/run/docker.sock
     restart: always
@@ -58,19 +61,23 @@ services:
       #- "traefik.frontend.redirect.regex=^(.*)/portainer$$"
       #- "traefik.frontend.redirect.replacement=$$1/portainer/"
       #- "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"    
-    container_name: portainer
+
 
   #docker run --restart=always --name guacd -d guacamole/guacd
    #docker run --restart=always --name guacamole  --link mysql:mysql --link guacd:guacd -e MYSQL_HOSTNAME=127.0.0.1 -e MYSQL_DATABASE=guacamole_db -e MYSQL_USER=guacamole_user -e MYSQL_PASSWORD=$guacdbuserpassword --detach -p 8090:8080 guacamole/guacamole
   
   guacd:
+    container_name: guacd
     image: guacamole/guacd
     restart: always
     #network_mode: bridge
     networks:
       - web
+    labels:
+      - "traefik.enable=false"
 
   strapi:
+    container_name: strapi
     image: strapi/strapi
     restart: always
     depends_on:
@@ -81,7 +88,7 @@ services:
       - internal
 
     ports:
-      - 1337:1337
+      - 127.0.0.1:1337:1337
     links:
        - mysql
     volumes: 
@@ -94,8 +101,12 @@ services:
       DATABASE_NAME: api_db
       DATABASE_USERNAME: api_user
       DATABASE_PASSWORD:
+    labels:
+      - "traefik.enable=false"
+
     
   guacamole:
+    container_name: guacamole
     image: guacamole/guacamole
     restart: always
     depends_on:
@@ -128,6 +139,7 @@ services:
       
   # export MYSQL_ROOT_PASSWORD=secure_database_password  
   mysql:
+    container_name: mysql
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD:
@@ -146,7 +158,7 @@ services:
       - docker-hoster
     labels:
       - traefik.enable=false
-    container_name: mysql
+
 
 volumes:
   portainer_data:
