@@ -373,12 +373,12 @@ function setup-buffalo {
    addreplacevalue "source ~/otl/buffalo_completion.sh" "source ~/otl/buffalo_completion.sh" ~/.bashrc
    go get -u -v github.com/gobuffalo/buffalo-plugins
 
-   go get -u -v github.com/gobuffalo/buffalo-auth
-   go get -u -v github.com/gobuffalo/buffalo-goth
-   go get -u -v github.com/gobuffalo/buffalo-docker
+   #go get -u -v github.com/gobuffalo/buffalo-auth
+   #go get -u -v github.com/gobuffalo/buffalo-goth
+   #go get -u -v github.com/gobuffalo/buffalo-docker
 
-   go get -u -v -tags sqlite github.com/gobuffalo/pop/...
-   go install -tags sqlite github.com/gobuffalo/pop/soda
+   #go get -u -v -tags sqlite github.com/gobuffalo/pop/...
+   #go install -tags sqlite github.com/gobuffalo/pop/soda
 
    mkdir -p $GOPATH/src/github.com/one-tec-lab/
    cd  $GOPATH/src/github.com/one-tec-lab/
