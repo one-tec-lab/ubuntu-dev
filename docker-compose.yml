@@ -76,35 +76,6 @@ services:
     labels:
       - "traefik.enable=false"
 
-  strapi:
-    container_name: strapi
-    image: strapi/strapi
-    restart: always
-    depends_on:
-      - mysql
-    #network_mode: bridge
-    networks:
-      - web
-      - internal
-
-    ports:
-      - 127.0.0.1:1337:1337
-    links:
-       - mysql
-    volumes: 
-      - ./strapi-app:/usr/src/api/strapi-app
-    environment:
-      APP_NAME: strapi-app
-      DATABASE_CLIENT: mysql
-      DATABASE_HOST: mysql
-      DATABASE_PORT: 3306
-      DATABASE_NAME: api_db
-      DATABASE_USERNAME: api_user
-      DATABASE_PASSWORD:
-    labels:
-      - "traefik.enable=false"
-
-    
   guacamole:
     container_name: guacamole
     image: guacamole/guacamole
@@ -136,6 +107,42 @@ services:
       - "traefik.frontend.rule=Port:8090; AddPrefix:/guacamole"
       - "traefik.port=8080"
       - "traefik.docker.network=web"   
+      
+      - "traefik.frontend.redirect.regex=^(.*)/guacamole$$"
+      - "traefik.frontend.redirect.replacement=$$1/guacamole/"
+      - "traefik.frontend.rule=PathPrefix:/guacamole;ReplacePathRegex: ^/guacamole/(.*) /$$1"    
+
+
+  strapi:
+    container_name: strapi
+    image: strapi/strapi
+    restart: always
+    depends_on:
+      - mysql
+    #network_mode: bridge
+    networks:
+      - web
+      - internal
+
+    ports:
+      - 127.0.0.1:1337:1337
+    links:
+       - mysql
+    volumes: 
+      - ./strapi-app:/usr/src/api/strapi-app
+    environment:
+      APP_NAME: strapi-app
+      DATABASE_CLIENT: mysql
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_NAME: api_db
+      DATABASE_USERNAME: api_user
+      DATABASE_PASSWORD:
+    labels:
+      - "traefik.enable=false"
+
+    
+
       
   # export MYSQL_ROOT_PASSWORD=secure_database_password  
   mysql:
