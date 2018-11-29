@@ -344,7 +344,7 @@ function setup-git {
        echo 
        while true
        do
-           read -s -p "Enter GITHUB email: " use_gitmail
+           read -p "Enter GITHUB email: " use_gitmail
            echo
            [ -z "$use_gitmail" ] && echo "Please provide GITHUB mail" || break
            echo
@@ -352,7 +352,7 @@ function setup-git {
        echo
        while true
        do
-           read -s -p "Enter GITHUB user name: " use_gitname
+           read  -p "Enter GITHUB user name: " use_gitname
            echo
            [ -z "$use_gitname" ] && echo "Please provide GITHUB user name" || break
            echo
