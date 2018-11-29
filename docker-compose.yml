@@ -131,6 +131,7 @@ services:
     #network_mode: bridge
     networks:
       - internal
+    hostname: mysql.local.docker
     ports:
       - 3306:3306
     #networks:
