@@ -52,6 +52,7 @@ function addreplacevalue {
      echo $nuevacad>>$archivo
    fi
 }
+
 function install-server {
 
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
@@ -59,6 +60,8 @@ function install-server {
    /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018-  #\e[0m"
    /bin/echo -e "\e[1;36m#-------------------------------------------------------------#\e[0m"
    echo
+   version=$(lsb_release -d | awk -F":" '/Description/ {print $2}')
+   echo $version   
    sudo echo
    ##sudo adduser devuser
    ##sudo usermod -aG sudo devuser
@@ -84,9 +87,12 @@ function install-server {
    sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | sudo tee -a /etc/apt/sources.list
    sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
 
+   ########### git
+   sudo add-apt-repository ppa:git-core/ppa -y
+
    sudo apt-get update
    #sudo apt-get upgrade -y
-   sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common wget ufw openconnect  -y
+   sudo apt-get install gcc g++ make apt-transport-https ca-certificates curl software-properties-common wget ufw openconnect git -y
 
 
    ######## docker
@@ -126,8 +132,12 @@ function install-server {
    #YARN
    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-   sudo apt-get update && sudo apt-get install yarn
+   sudo apt-get update && 
+   sudo apt-get install yarn -y
    echo
+   
+   
+   mkdir -p $HOME/otl
    /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
    /bin/echo -e "\e[1;36m# Installation Completed\e[0m"
    /bin/echo -e "\e[1;36m# Please test your Server configuration....\e[0m"
@@ -210,12 +220,7 @@ EOF
    sudo install -t "/var/lib/xrdp-pulseaudio-installer" -D -m 644 *.so
 
 
-   ########### git
-   sudo add-apt-repository ppa:git-core/ppa -y
-   sudo apt-get update
-   sudo apt-get install git git-extras -y
 
-   mkdir -p $HOME/otl
    ####chrome
    cd $HOME
    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -375,16 +380,6 @@ function setup-buffalo {
    curl https://raw.githubusercontent.com/cippaciong/buffalo_bash_completion/master/buffalo_completion.sh > ~/otl/buffalo_completion.sh
    addreplacevalue "source ~/otl/buffalo_completion.sh" "source ~/otl/buffalo_completion.sh" ~/.bashrc
    
-   #go get -u -v github.com/gobuffalo/buffalo-plugins
-
-   #go get -u -v github.com/gobuffalo/buffalo-auth
-   #go get -u -v github.com/gobuffalo/buffalo-goth
-   #go get -u -v github.com/gobuffalo/buffalo-docker
-
-   #go get -u -v -tags sqlite github.com/gobuffalo/pop/...
-   #go install -tags sqlite github.com/gobuffalo/pop/soda
-
-
 }
 
 function save-desktop-settings {
