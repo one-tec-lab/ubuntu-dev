@@ -142,6 +142,8 @@ services:
       - 3306:3306
     #networks:
     #  - internal
+    depends_on:
+      - docker-hoster
     labels:
       - traefik.enable=false
     container_name: mysql
