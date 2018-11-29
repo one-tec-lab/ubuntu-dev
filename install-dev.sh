@@ -321,7 +321,52 @@ function install-otl {
  clean-otl
 }
 
+function setup-git {
+   while [ "$1" != "" ]; do
+       case $1 in
+           -m | --gitmail )
+               shift
+               gitmail="$1"
+               ;;
+           -g | --gitname )
+               shift
+               gitname="$1"
+               ;;
+       esac
+       shift
+   done
+
+   # Get git account data
+   if [ -n "$gitmail" ] && [ -n "$gitname" ]; then
+           use_gitmail=$gitmail
+           use_gitname=$gitname
+   else
+       echo 
+       while true
+       do
+           read -s -p "Enter GITHUB email: " use_gitmail
+           echo
+           [ -z "$use_gitmail" ] && echo "Please provide GITHUB mail" || break
+           echo
+       done
+       echo
+       while true
+       do
+           read -s -p "Enter GITHUB user name: " use_gitname
+           echo
+           [ -z "$use_gitname" ] && echo "Please provide GITHUB user name" || break
+           echo
+       done
+       echo
+   fi
+   git config --global user.email $use_gitmail
+   git config --global user.name $use_gitname
+
+
+}
+
 function setup-buffalo {
+   setup-git
    go get -u -v -tags sqlite github.com/gobuffalo/buffalo/buffalo
    curl https://raw.githubusercontent.com/cippaciong/buffalo_bash_completion/master/buffalo_completion.sh > ~/otl/buffalo_completion.sh
    addreplacevalue "source ~/otl/buffalo_completion.sh" "source ~/otl/buffalo_completion.sh" ~/.bashrc
