@@ -310,7 +310,8 @@ function update-otl {
    git fetch --all
    git reset --hard origin/master
    git pull origin master
-   curl https://raw.githubusercontent.com/one-tec-lab/ubuntu-dev/master/install-dev.sh > ~/install-dev.sh
+   
+   cp -rf ~/otl/ubuntu-dev/install-dev.sh ~/install-dev.sh
    cp ~/otl/ubuntu-dev/img/* ~/Pictures
 }
 
