@@ -10,11 +10,12 @@ networks:
 
 services:
   docker-hoster:
-    image:  dvdarias/docker-hoster
+    image: dvdarias/docker-hoster
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
       - /etc/hosts:/tmp/hosts
-   
+    container_name: docker-hoster
+    
   reverse-proxy:
     image: traefik # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
@@ -136,7 +137,7 @@ services:
     #network_mode: bridge
     networks:
       - internal
-    hostname: mysql.local.docker
+    
     ports:
       - 3306:3306
     #networks:
