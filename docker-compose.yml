@@ -12,8 +12,8 @@ services:
   docker-hoster:
     image:  dvdarias/docker-hoster
     volumes:
-      /var/run/docker.sock:/tmp/docker.sock
-      /etc/hosts:/tmp/hosts
+      - /var/run/docker.sock:/tmp/docker.sock
+      - /etc/hosts:/tmp/hosts
    
   reverse-proxy:
     image: traefik # The official Traefik docker image
