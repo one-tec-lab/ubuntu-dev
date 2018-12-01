@@ -1,5 +1,5 @@
 [org/gnome/settings-daemon/plugins/color]
-night-light-last-coordinates=(19.473400000000002, -99.242699999999999)
+night-light-last-coordinates=(19.4785, -99.239599999999996)
 
 [org/gnome/settings-daemon/plugins/xsettings]
 antialiasing='grayscale'
@@ -11,7 +11,7 @@ numlock-state='on'
 [org/gnome/shell]
 app-picker-view=uint32 1
 enabled-extensions=['dash-to-panel@jderose9.github.com']
-favorite-apps=['gnome-control-center.desktop', 'firefox.desktop', 'google-chrome.desktop', 'thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop', 'code.desktop', 'mysql-workbench.desktop', 'vlc.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop', 'org.gnome.tweaks.desktop']
+favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'mysql-workbench.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop', 'gnome-system-monitor.desktop']
 
 [org/gnome/shell/extensions/dash-to-panel]
 trans-use-custom-opacity=true
@@ -28,7 +28,7 @@ appicon-padding=0
 show-tabs-mode='auto'
 
 [org/gnome/gedit/plugins/filebrowser]
-virtual-root='file:///home/devuser'
+virtual-root='file:///home/devuser/.config/Code'
 tree-view=true
 root='file:///'
 
@@ -36,8 +36,8 @@ root='file:///'
 active-plugins=['time', 'filebrowser', 'docinfo', 'modelines', 'spell']
 
 [org/gnome/gedit/state/window]
-size=(1346, 700)
-state=43908
+size=(1287, 667)
+state=87168
 bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page='GeditWindowDocumentsPanel'
@@ -48,11 +48,11 @@ search-filter-time-type='last_modified'
 
 [org/gnome/nautilus/window-state]
 sidebar-width=246
-geometry='890x577+220+169'
+geometry='890x583+220+169'
 maximized=false
 
 [org/gnome/system/location]
-enabled=true
+enabled=false
 
 [org/gnome/evolution-data-server]
 network-monitor-gio-name=''
@@ -95,13 +95,16 @@ gtk-theme='Communitheme'
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['update-manager', 'apport-gtk']
+application-children=['update-manager', 'apport-gtk', 'org-gnome-terminal']
 
 [org/gnome/desktop/notifications/application/update-manager]
 application-id='update-manager.desktop'
 
 [org/gnome/desktop/notifications/application/apport-gtk]
 application-id='apport-gtk.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'Sundry', 'YaST']
@@ -130,6 +133,9 @@ primary-color='#000000000000'
 picture-options='zoom'
 secondary-color='#000000000000'
 
+[org/gnome/desktop/session]
+idle-delay=uint32 0
+
 [org/gnome/desktop/privacy]
 report-technical-problems=true
 
@@ -140,7 +146,7 @@ button-layout='appmenu:minimize,maximize,close'
 screen-keyboard-enabled=false
 
 [org/gnome/desktop/background]
-picture-uri='file:///home/devuser/Pictures/wallpaper.jpg'
+picture-uri='/home/devuser/Pictures/wallpaper.jpg'
 color-shading-type='solid'
 primary-color='#000000000000'
 picture-options='zoom'
@@ -152,7 +158,7 @@ sources=[('xkb', 'es')]
 xkb-options=@as []
 
 [org/gnome/control-center]
-last-panel='privacy'
+last-panel='power'
 
 [org/gnome/eog/view]
 background-color='rgb(0,0,0)'
@@ -171,12 +177,24 @@ schema-version=uint32 3
 
 [org/gnome/software]
 first-run=false
-check-timestamp=int64 1542435744
+check-timestamp=int64 1543586123
+
+[org/gnome/gnome-system-monitor]
+show-dependencies=false
+current-tab='resources'
+cpu-colors=[(uint32 0, '#FF6E00'), (1, '#CB0C29'), (2, '#49A835'), (3, '#2D7DB3'), (4, '#f25915e815e8'), (5, '#f25915e815e8')]
+maximized=false
+window-state=(700, 500, 50, 50)
+show-whose-processes='user'
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=214
-window-position=(0, 0)
+window-position=(119, 3)
 show-size-column=true
 show-hidden=false
 window-size=(1203, 805)
@@ -191,10 +209,11 @@ custom-colors=[(0.10666666666666667, 0.1056, 0.10240000000000002, 1.0), (0.14000
 
 [apps/update-manager]
 first-run=false
-launch-time=int64 1542326496
+launch-time=int64 1543521059
 window-height=400
 show-details=true
+launch-count=1
 window-width=645
 
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1542326494
+release-check-time=uint32 1543536136
