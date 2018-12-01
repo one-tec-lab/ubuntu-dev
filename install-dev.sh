@@ -233,6 +233,7 @@ EOF
    sudo apt-get install apt-transport-https -y
    sudo apt-get update
    sudo apt-get install code -y # or code-insiders
+   mkdir -p ~/.config/Code/User/
    cp ~/otl/ubuntu-dev/code/settings.json ~/.config/Code/User/
    ####### dash to panel
 
