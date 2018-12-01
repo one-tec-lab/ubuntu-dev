@@ -233,7 +233,7 @@ EOF
    sudo apt-get install apt-transport-https -y
    sudo apt-get update
    sudo apt-get install code -y # or code-insiders
-
+   cp -f ~/otl/ubuntu-dev/code/settings.json ~/otl/.config/Code/User/settings.json
    ####### dash to panel
 
    cd $HOME/otl
