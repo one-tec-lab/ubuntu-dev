@@ -11,7 +11,7 @@ numlock-state='on'
 [org/gnome/shell]
 app-picker-view=uint32 1
 enabled-extensions=['dash-to-panel@jderose9.github.com']
-favorite-apps=['gnome-system-monitor.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'mysql-workbench.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop']
+favorite-apps=['gnome-system-monitor.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'mysql-workbench.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop']
 
 [org/gnome/shell/extensions/dash-to-panel]
 trans-use-custom-opacity=true
