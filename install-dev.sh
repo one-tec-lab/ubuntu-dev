@@ -317,6 +317,10 @@ function update-otl {
    
    cp -rf ~/otl/ubuntu-dev/install-dev.sh ~/install-dev.sh
    cp ~/otl/ubuntu-dev/img/* ~/Pictures
+   if [ ! -f ~/.config/Code/User/settings.json  ]; then
+      mkdir -p ~/.config/Code/User/
+      cp ~/otl/ubuntu-dev/code/settings.json ~/.config/Code/User/settings.json
+   fi
 }
 
 function install-otl {
