@@ -254,14 +254,6 @@ EOF
    sudo apt-get update
    sudo apt-get install ubuntu-communitheme-session -y
 
-   ##### graphic editors
-   sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
-   sudo add-apt-repository ppa:inkscape.dev/stable -y
-   sudo add-apt-repository ppa:kritalime/ppa -y
-   sudo apt-get update
-   sudo apt-get install gimp inkscape krita vlc gnome-system-monitor -y
-
-
    #sudo apt-get -y upgrade
    
    sudo systemctl start graphical.target
@@ -296,6 +288,15 @@ echo "source ~/install-dev.sh" >> ~/.bashrc
    /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
    echo
 
+}
+
+function install-graphic-editors {
+   ##### graphic editors
+   sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
+   sudo add-apt-repository ppa:inkscape.dev/stable -y
+   sudo add-apt-repository ppa:kritalime/ppa -y
+   sudo apt-get update
+   sudo apt-get install gimp inkscape krita vlc gnome-system-monitor -y
 }
 
 function clean-otl {
