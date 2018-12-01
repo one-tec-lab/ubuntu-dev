@@ -277,16 +277,13 @@ EOF
 
 echo "source ~/install-dev.sh" >> ~/.bashrc
 
-  #---------------------------------------------------#
-   # Step 6 - Credits ....
-   #---------------------------------------------------#
-   echo
-   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
-   /bin/echo -e "\e[1;36m# Installation Completed\e[0m"
-   /bin/echo -e "\e[1;36m# Please test your Desktop configuration....\e[0m"
-   /bin/echo -e "\e[1;36m# Written by Tadeo - Nov 2018 - Ver 0.2 - install-dev.sh\e[0m"
-   /bin/echo -e "\e[1;36m#-----------------------------------------------------------------------#\e[0m"
-   echo
+echo
+/bin/echo -e "-----------------------------------------------------------------------"
+/bin/echo -e " Installation Completed"
+/bin/echo -e " Please test your Desktop configuration...."
+/bin/echo -e " Written by Tadeo - Nov 2018 - Ver 0.2 - install-dev.sh"
+/bin/echo -e "-----------------------------------------------------------------------"
+echo
 
 }
 
