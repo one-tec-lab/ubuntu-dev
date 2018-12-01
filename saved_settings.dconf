@@ -11,17 +11,24 @@ numlock-state='on'
 [org/gnome/shell]
 app-picker-view=uint32 1
 enabled-extensions=['dash-to-panel@jderose9.github.com']
-favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'mysql-workbench.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop', 'gnome-system-monitor.desktop']
+favorite-apps=['gnome-system-monitor.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'org.gnome.tweaks.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'mysql-workbench.desktop', 'gimp.desktop', 'inkscape.desktop', 'org.kde.krita.desktop']
 
 [org/gnome/shell/extensions/dash-to-panel]
 trans-use-custom-opacity=true
-panel-size=48
+panel-position='BOTTOM'
+trans-gradient-top-opacity=0.0
+trans-gradient-bottom-opacity=0.0
+panel-size=37
 multi-monitors=false
-trans-use-dynamic-opacity=false
+location-clock='STATUSLEFT'
+trans-use-dynamic-opacity=true
 hotkeys-overlay-combo='TEMPORARILY'
-trans-use-custom-bg=false
+taskbar-position='CENTEREDMONITOR'
+trans-use-custom-bg=true
+trans-bg-color='#1b1b1a'
 appicon-margin=0
 trans-panel-opacity=0.0
+trans-use-custom-gradient=true
 appicon-padding=0
 
 [org/gnome/gedit/preferences/ui]
@@ -52,7 +59,7 @@ geometry='890x583+220+169'
 maximized=false
 
 [org/gnome/system/location]
-enabled=false
+enabled=true
 
 [org/gnome/evolution-data-server]
 network-monitor-gio-name=''
