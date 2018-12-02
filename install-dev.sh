@@ -168,7 +168,7 @@ function install-desktop {
    /bin/echo -e "---------------------------------------------"
    echo
    sudo echo
-   sudo apt-get install ubuntu-desktop gufw mysql-workbench mysql-client  gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
+   sudo apt-get install ubuntu-desktop gufw mysql-workbench mysql-client gnome-system-monitor gnome-tweak-tool xrdp xrdp-pulseaudio-installer -y
    echo
    /bin/echo -e "---------------------------------------------"
    /bin/echo -e " Granting Console Access...Proceeding... "
@@ -293,7 +293,7 @@ function install-graphic-editors {
    sudo add-apt-repository ppa:inkscape.dev/stable -y
    sudo add-apt-repository ppa:kritalime/ppa -y
    sudo apt-get update
-   sudo apt-get install gimp inkscape krita vlc gnome-system-monitor -y
+   sudo apt-get install gimp inkscape krita vlc -y
 }
 
 function clean-otl {
