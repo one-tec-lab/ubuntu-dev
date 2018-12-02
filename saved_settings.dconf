@@ -11,7 +11,7 @@ numlock-state='on'
 [org/gnome/shell]
 app-picker-view=uint32 1
 enabled-extensions=['dash-to-panel@jderose9.github.com']
-favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'code.desktop', 'mysql-workbench.desktop', 'org.remmina.Remmina.desktop']
+favorite-apps=['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'yelp.desktop', 'org.gnome.Software.desktop', 'gufw.desktop', 'gnome-control-center.desktop', 'thunderbird.desktop', 'firefox.desktop', 'google-chrome.desktop', 'mysql-workbench.desktop', 'code.desktop']
 
 [org/gnome/shell/extensions/dash-to-panel]
 trans-use-custom-opacity=true
@@ -203,7 +203,7 @@ sort-column='name'
 sidebar-width=214
 window-position=(119, 3)
 show-size-column=true
-show-hidden=true
+show-hidden=false
 window-size=(1203, 805)
 sort-directories-first=false
 date-format='regular'
