@@ -65,28 +65,30 @@ function install-server {
    sudo echo
    ##sudo adduser devuser
    ##sudo usermod -aG sudo devuser
-   
-   cd $HOME/
-   if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
-     echo "Auto-updates required to be disabled (done). "
-     sudo cp /etc/apt/apt.conf.d/20auto-upgrades /etc/backup_apt_apt.conf.d_20auto-upgrades
-     sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
-     sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
-     echo "A backup of /etc/apt/apt.conf.d/20auto-upgrades was created at /etc/backup_20auto-upgrades"
-     echo "Restart the system and run the installation command again "
-     #sudo addreplacevalue 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
-     exit
+   if [ -f /root/.cloud-locale-test.skip ];then
+      echo "Running in Digital-Ocean. Not changing repositories"
+   else
+      cd $HOME/
+      if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
+        echo "Auto-updates required to be disabled (done). "
+        sudo cp /etc/apt/apt.conf.d/20auto-upgrades /etc/backup_apt_apt.conf.d_20auto-upgrades
+        sudo echo 'APT::Periodic::Update-Package-Lists "0";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
+        sudo echo 'APT::Periodic::Unattended-Upgrade "1";' | sudo tee -a /etc/apt/apt.conf.d/20auto-upgrades
+        echo "A backup of /etc/apt/apt.conf.d/20auto-upgrades was created at /etc/backup_20auto-upgrades"
+        echo "Restart the system and run the installation command again "
+        #sudo addreplacevalue 'APT::Periodic::Update-Package-Lists "1";' 'APT::Periodic::Update-Package-Lists "0";' /etc/apt/apt.conf.d/20auto-upgrades
+        exit
+      fi
+
+      sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
+
+      sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee /etc/apt/sources.list
+      sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
+      sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-security main universe" | sudo tee -a /etc/apt/sources.list
+      sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-security main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
+      sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | sudo tee -a /etc/apt/sources.list
+      sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
    fi
-
-   sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
-
-   sudo echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee /etc/apt/sources.list
-   sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
-   sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-security main universe" | sudo tee -a /etc/apt/sources.list
-   sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-security main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
-   sudo echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main universe" | sudo tee -a /etc/apt/sources.list
-   sudo echo "deb-src http://archive.ubuntu.com/ubuntu bionic-updates main universe #Added by software-properties" | sudo tee -a /etc/apt/sources.list
-
    ########### git
    sudo add-apt-repository ppa:git-core/ppa -y
 
