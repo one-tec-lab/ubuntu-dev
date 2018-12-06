@@ -65,7 +65,7 @@ function install-server {
    sudo echo
 
    if [ -f /root/.cloud-locale-test.skip ];then
-      echo "Running in Digital-Ocean. Not changing repositories"
+      echo "Running in Digital-Ocean. Using original repositories"
       if [ "$USER" == "root" ];then
          echo
          sudo adduser devuser
