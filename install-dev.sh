@@ -63,10 +63,11 @@ function install-server {
    version=$(lsb_release -d | awk -F":" '/Description/ {print $2}')
    echo $version   
    sudo echo
-   ##sudo adduser devuser
-   ##sudo usermod -aG sudo devuser
+
    if [ -f /root/.cloud-locale-test.skip ];then
       echo "Running in Digital-Ocean. Not changing repositories"
+      sudo adduser devuser
+      sudo usermod -aG sudo devuser
    else
       cd $HOME/
       if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
