@@ -66,8 +66,12 @@ function install-server {
 
    if [ -f /root/.cloud-locale-test.skip ];then
       echo "Running in Digital-Ocean. Not changing repositories"
-      sudo adduser devuser
-      sudo usermod -aG sudo devuser
+      if [ "$USER" == "root" ];then
+         sudo adduser devuser
+         sudo usermod -aG sudo devuser 
+         echo "User 'devuser' Created. Logout from root and run the install command again under user 'devuser'"
+         exit
+      fi
    else
       cd $HOME/
       if grep -q 'APT::Periodic::Update-Package-Lists "1";' /etc/apt/apt.conf.d/20auto-upgrades; then
