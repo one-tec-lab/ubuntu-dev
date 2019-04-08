@@ -129,7 +129,7 @@ function install-server {
    sudo echo
    sudo rm -rf /usr/local/go
    cd $HOME/
-   curl -sL https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz -o $HOME/go.tar.gz
+   curl -sL https://dl.google.com/go/go1.12.3.linux-amd64.tar.gz -o $HOME/go.tar.gz
    sudo tar -C /usr/local -xzf go.tar.gz
    mkdir -p $HOME/go/bin
 
